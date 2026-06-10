@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aries Digital Printing | The Ink Solutions</title>
+<meta name="description" content="Aries Digital Printing — High-quality, affordable digital printing solutions in the Philippines. T-shirts, tarpaulins, ID cards, stickers & more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink-black: #0d0d0d;
+    --ink-dark: #1a1a1a;
+    --ink-panel: #242424;
+    --ink-border: #333;
+    --ink-muted: #888;
+    --ink-light: #f5f3ee;
+    --ink-white: #ffffff;
+    --cyan: #00c8d7;
+    --magenta: #e91e8c;
+    --yellow: #f5c518;
+    --key: #1a1a1a;
+    --accent: #00c8d7;
+    --accent2: #e91e8c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink-black);
+    color: var(--ink-white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,13,13,0.95);
+    border-bottom: 1px solid var(--ink-border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none; color: inherit;
+  }
+  .nav-logo img { height: 42px; object-fit: contain; }
+  .nav-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; line-height: 1.2; }
+  .nav-brand span { display: block; font-size: 0.7rem; color: var(--ink-muted); font-family: 'DM Sans', sans-serif; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--ink-muted); font-size: 0.88rem; letter-spacing: 0.04em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent); color: var(--ink-black);
+    padding: 8px 20px; border-radius: 4px;
+    text-decoration: none; font-size: 0.85rem; font-weight: 600;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: #00e5f5; transform: translateY(-1px); }
+  .back-link { color: var(--ink-muted); font-size: 0.82rem; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  .back-link:hover { color: var(--ink-white); }
+
+  /* ---- HERO ---- */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 100px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: 
+      radial-gradient(ellipse 60% 60% at 80% 50%, rgba(0,200,215,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 20% 60%, rgba(233,30,140,0.06) 0%, transparent 70%);
+  }
+  .cmyk-strip {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--cyan) 25%, var(--magenta) 25% 50%, var(--yellow) 50% 75%, var(--key) 75%);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 780px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,200,215,0.1); border: 1px solid rgba(0,200,215,0.25);
+    padding: 6px 16px; border-radius: 100px;
+    font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 2rem;
+  }
+  .hero-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: inline-block; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  h1 .accent2 { color: var(--magenta); }
+  .hero-sub {
+    font-size: 1.1rem; color: rgba(255,255,255,0.65);
+    max-width: 520px; margin-bottom: 2.5rem; font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: var(--ink-black);
+    padding: 14px 32px; border-radius: 4px;
+    text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: #00e5f5; transform: translateY(-2px); }
+  .btn-ghost {
+    border: 1px solid var(--ink-border); color: var(--ink-white);
+    padding: 14px 32px; border-radius: 4px;
+    text-decoration: none; font-weight: 400; font-size: 0.95rem;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--ink-muted); background: rgba(255,255,255,0.04); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 2.5rem; border-top: 1px solid var(--ink-border);
+    flex-wrap: wrap;
+  }
+  .stat-val { font-size: 2rem; font-weight: 700; font-family: 'Playfair Display', serif; }
+  .stat-val span { color: var(--accent); }
+  .stat-lbl { font-size: 0.82rem; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* ---- LOGO SECTION ---- */
+  #brand {
+    padding: 80px 5%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--ink-dark); border-top: 1px solid var(--ink-border); border-bottom: 1px solid var(--ink-border);
+  }
+  .brand-inner { display: flex; align-items: center; gap: 60px; flex-wrap: wrap; justify-content: center; }
+  .brand-logo-wrap { background: white; border-radius: 12px; padding: 24px 32px; }
+  .brand-logo-wrap img { height: 90px; object-fit: contain; display: block; }
+  .brand-text h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 0.5rem; }
+  .brand-text p { color: rgba(255,255,255,0.55); max-width: 380px; }
+  .cmyk-dots { display: flex; gap: 8px; margin-top: 1rem; }
+  .cmyk-dot { width: 12px; height: 12px; border-radius: 50%; }
+
+  /* ---- SECTIONS ---- */
+  section { padding: 100px 5%; }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.75rem; font-weight: 600;
+  }
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.15; margin-bottom: 1rem;
+  }
+  .section-sub { color: rgba(255,255,255,0.5); max-width: 480px; margin-bottom: 3.5rem; }
+
+  /* ---- SERVICES GRID ---- */
+  #services { background: var(--ink-black); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px;
+    background: var(--ink-border);
+    border: 1.5px solid var(--ink-border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .service-card {
+    background: var(--ink-dark);
+    padding: 2.5rem 2rem;
+    transition: background 0.25s;
+    position: relative;
+  }
+  .service-card:hover { background: #202020; }
+  .service-icon {
+    width: 52px; height: 52px;
+    background: rgba(0,200,215,0.08);
+    border: 1px solid rgba(0,200,215,0.18);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.25rem;
+  }
+  .service-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .service-card p { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  .service-tag {
+    display: inline-block; margin-top: 1rem;
+    font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent); background: rgba(0,200,215,0.08);
+    padding: 3px 10px; border-radius: 100px;
+  }
+
+  /* ---- PRODUCTS / PRICING ---- */
+  #products { background: var(--ink-dark); }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .product-card {
+    background: var(--ink-panel);
+    border: 1px solid var(--ink-border);
+    border-radius: 12px; padding: 1.75rem;
+    transition: border-color 0.25s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .product-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .product-card:hover { border-color: rgba(0,200,215,0.4); transform: translateY(-3px); }
+  .product-card:hover::before { transform: scaleX(1); }
+  .product-card.featured {
+    border-color: rgba(0,200,215,0.35);
+    background: rgba(0,200,215,0.03);
+  }
+  .product-card.featured::before { transform: scaleX(1); }
+  .badge {
+    display: inline-block; font-size: 0.7rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 3px 10px; border-radius: 100px;
+    background: rgba(0,200,215,0.15); color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .badge.pink { background: rgba(233,30,140,0.15); color: var(--magenta); }
+  .product-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .product-card .desc { font-size: 0.85rem; color: rgba(255,255,255,0.45); margin-bottom: 1.25rem; line-height: 1.5; }
+  .price-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 0.4rem; }
+  .price { font-size: 1.6rem; font-weight: 700; font-family: 'Playfair Display', serif; }
+  .price-unit { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+  .price-note { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+  .order-btn {
+    display: block; width: 100%; margin-top: 1.25rem;
+    background: transparent; border: 1px solid var(--ink-border);
+    color: var(--ink-white); padding: 10px;
+    border-radius: 6px; font-size: 0.85rem; font-weight: 500;
+    text-align: center; text-decoration: none;
+    transition: all 0.2s; cursor: pointer;
+  }
+  .order-btn:hover { background: var(--accent); border-color: var(--accent); color: var(--ink-black); }
+  .order-btn.primary { background: var(--accent); border-color: var(--accent); color: var(--ink-black); }
+  .order-btn.primary:hover { background: #00e5f5; }
+
+  /* ---- PROCESS ---- */
+  #process { background: var(--ink-black); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    counter-reset: steps;
+  }
+  .process-step {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--ink-border);
+    position: relative;
+  }
+  .process-step:last-child { border-right: none; }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; font-weight: 900;
+    color: rgba(255,255,255,0.07);
+    line-height: 1; margin-bottom: 1rem;
+  }
+  .step-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+  .process-step h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .process-step p { font-size: 0.83rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  .process-connector {
+    position: absolute; right: -1px; top: 50%; transform: translateY(-50%);
+    width: 0; height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 10px solid var(--ink-border);
+    display: none;
+  }
+
+  /* ---- WHY US ---- */
+  #why { background: var(--ink-dark); }
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center;
+  }
+  .why-list { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; }
+  .why-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .why-check {
+    width: 28px; height: 28px; min-width: 28px;
+    border-radius: 50%; background: rgba(0,200,215,0.12); border: 1px solid rgba(0,200,215,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; margin-top: 2px; color: var(--accent);
+  }
+  .why-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 2px; }
+  .why-item p { font-size: 0.83rem; color: rgba(255,255,255,0.45); }
+  .why-visual {
+    background: var(--ink-panel); border: 1px solid var(--ink-border);
+    border-radius: 16px; padding: 2.5rem;
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .ink-meter-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px; }
+  .ink-meter-label span:first-child { color: rgba(255,255,255,0.6); }
+  .ink-meter-label span:last-child { font-weight: 600; }
+  .ink-bar { height: 8px; background: rgba(255,255,255,0.07); border-radius: 100px; overflow: hidden; }
+  .ink-fill { height: 100%; border-radius: 100px; }
+
+  /* ---- GALLERY ---- */
+  #gallery { background: var(--ink-black); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .gallery-item {
+    aspect-ratio: 1;
+    background: var(--ink-panel);
+    border: 1px solid var(--ink-border);
+    border-radius: 8px; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem; position: relative; cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .gallery-item:hover { border-color: rgba(0,200,215,0.4); }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+  .gallery-overlay {
+    position: absolute; inset: 0; background: rgba(0,200,215,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent); opacity: 0; transition: opacity 0.2s;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-placeholder {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.5rem; color: rgba(255,255,255,0.2);
+  }
+  .gallery-placeholder span { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* ---- CONTACT / ORDER ---- */
+  #contact { background: var(--ink-dark); }
+  .contact-wrap {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: start;
+  }
+  .contact-channels { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+  .channel-btn {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px; border-radius: 8px;
+    border: 1px solid var(--ink-border); background: var(--ink-panel);
+    text-decoration: none; color: var(--ink-white);
+    font-size: 0.88rem; transition: all 0.2s;
+  }
+  .channel-btn:hover { border-color: rgba(0,200,215,0.4); background: rgba(0,200,215,0.05); }
+  .channel-icon { font-size: 1.25rem; min-width: 28px; }
+  .channel-info strong { display: block; font-size: 0.83rem; }
+  .channel-info span { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-group label { display: block; font-size: 0.8rem; color: rgba(255,255,255,0.45); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; background: var(--ink-panel); border: 1px solid var(--ink-border);
+    color: var(--ink-white); padding: 12px 14px; border-radius: 6px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    transition: border-color 0.2s; outline: none;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: rgba(0,200,215,0.5);
+  }
+  .form-group textarea { min-height: 120px; resize: vertical; }
+  .form-group select option { background: #1a1a1a; }
+  .submit-btn {
+    background: var(--accent); color: var(--ink-black);
+    border: none; padding: 14px 32px; border-radius: 6px;
+    font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.95rem;
+    cursor: pointer; transition: all 0.2s; align-self: flex-start;
+  }
+  .submit-btn:hover { background: #00e5f5; transform: translateY(-1px); }
+  #form-success { display: none; color: var(--accent); font-size: 0.9rem; padding: 12px 0; }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: var(--ink-black);
+    border-top: 1px solid var(--ink-border);
+    padding: 3rem 5%;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-brand { display: flex; align-items: center; gap: 12px; }
+  .footer-brand img { height: 36px; object-fit: contain; background: white; border-radius: 6px; padding: 4px 6px; }
+  .footer-brand span { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+  .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .footer-links a { color: rgba(255,255,255,0.35); font-size: 0.83rem; text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+  .cmyk-badge { display: flex; align-items: center; gap: 4px; font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+  .cmyk-badge span { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* ---- RESPONSIVE ---- */
+  @media(max-width: 768px) {
+    .nav-links { display: none; }
+    .why-grid, .contact-wrap { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-steps { grid-template-columns: 1fr; }
+    .process-step { border-right: none; border-bottom: 1px solid var(--ink-border); }
+    .hero-stats { gap: 2rem; }
+    .brand-inner { gap: 30px; }
+  }
+
+  /* Animations */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-content > * { animation: fadeUp 0.7s ease forwards; }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  h1 { animation-delay: 0.2s; }
+  .hero-sub { animation-delay: 0.35s; }
+  .hero-btns { animation-delay: 0.45s; }
+  .hero-stats { animation-delay: 0.55s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <img src="ADP_logo.JPG" alt="Aries Digital Printing Logo" onerror="this.style.display='none'">
+    <div class="nav-brand">Aries Digital Printing<span>The Ink Solutions</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#products">Pricing</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://bugzlife.netlify.app/" class="back-link" target="_blank">← BugzLife</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Aries Digital Printing · The Ink Solutions</div>
+    <h1>Your <em>Vision</em>,<br>Printed <span class="accent2">Perfectly.</span></h1>
+    <p class="hero-sub">High-quality, affordable digital printing for individuals, organizations & businesses across the Philippines. Fast turnaround. Vibrant colors. Every time.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Get a Quote →</a>
+      <a href="#services" class="btn-ghost">View Services</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-val">100<span>%</span></div>
+        <div class="stat-lbl">Digital Quality</div>
+      </div>
+      <div>
+        <div class="stat-val">24<span>hrs</span></div>
+        <div class="stat-lbl">Rush Turnaround</div>
+      </div>
+      <div>
+        <div class="stat-val">CMYK<span>+</span></div>
+        <div class="stat-lbl">Full Color Printing</div>
+      </div>
+      <div>
+        <div class="stat-val">₱<span>Low</span></div>
+        <div class="stat-lbl">Affordable Rates</div>
+      </div>
+    </div>
+  </div>
+  <div class="cmyk-strip"></div>
+</section>
+
+<!-- BRAND -->
+<div id="brand">
+  <div class="brand-inner">
+    <div class="brand-logo-wrap">
+      <img src="ADP_logo.JPG" alt="Aries Digital Printing — The Ink Solutions logo">
+    </div>
+    <div class="brand-text">
+      <h2>Aries Digital Printing</h2>
+      <p>Two brands, one mission — delivering print excellence with The Ink Solutions. Professional results at every budget, from single prints to bulk orders.</p>
+      <div class="cmyk-dots">
+        <div class="cmyk-dot" style="background:var(--cyan)" title="Cyan"></div>
+        <div class="cmyk-dot" style="background:var(--magenta)" title="Magenta"></div>
+        <div class="cmyk-dot" style="background:var(--yellow)" title="Yellow"></div>
+        <div class="cmyk-dot" style="background:#555" title="Key/Black"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">What We Print</div>
+  <h2 class="section-title">Our Services</h2>
+  <p class="section-sub">From custom apparel to large-format tarpaulins, we bring your designs to life with precision and care.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">👕</div>
+      <h3>T-Shirt & Apparel Printing</h3>
+      <p>Custom shirts, polo uniforms, sublimation jerseys, and personalized apparel. Perfect for teams, events, and souvenirs.</p>
+      <span class="service-tag">Sublimation · DTF · Screen</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🖼️</div>
+      <h3>Tarpaulin & Banners</h3>
+      <p>Eye-catching outdoor tarpaulins, birthday banners, event backdrops, and business signage in any size.</p>
+      <span class="service-tag">Indoor · Outdoor · Any Size</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🪪</div>
+      <h3>ID Cards & Lanyards</h3>
+      <p>School IDs, company IDs, membership cards, and custom lanyards. Durable PVC cards with clear, sharp printing.</p>
+      <span class="service-tag">PVC · Laminated · Bulk</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📄</div>
+      <h3>Document Printing</h3>
+      <p>Flyers, leaflets, brochures, certificates, programs, and business cards. Laser quality on premium paper stocks.</p>
+      <span class="service-tag">Flyers · Brochures · Cards</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🖼️</div>
+      <h3>Photo & Canvas Print</h3>
+      <p>Photo prints, canvas gallery wraps, and framed prints for home décor, gifts, and commemorative displays.</p>
+      <span class="service-tag">Photo · Canvas · Framed</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <h3>Custom Design</h3>
+      <p>Don't have a design? Our team creates it for you — logos, layouts, artwork, and print-ready files included.</p>
+      <span class="service-tag">Layout · Logo · Artwork</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏷️</div>
+      <h3>Stickers & Labels</h3>
+      <p>Waterproof vinyl stickers, product labels, logo stickers, and custom die-cut shapes for packaging or promotion.</p>
+      <span class="service-tag">Vinyl · Die-cut · Waterproof</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎁</div>
+      <h3>Personalized Gifts</h3>
+      <p>Mugs, pillowcases, keychains, tote bags — sublimation-printed with your photo or message. Great for any occasion.</p>
+      <span class="service-tag">Sublimation · Giveaways</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="products">
+  <div class="section-label">Pricing</div>
+  <h2 class="section-title">Print Packages</h2>
+  <p class="section-sub">Transparent, affordable pricing. Bulk orders get better rates — message us for a custom quote.</p>
+
+  <div class="products-grid">
+    <div class="product-card">
+      <span class="badge">T-Shirts</span>
+      <h3>Custom T-Shirt</h3>
+      <p class="desc">Full color sublimation print, front & back option, any design.</p>
+      <div class="price-row"><span class="price">₱250</span><span class="price-unit">/ piece</span></div>
+      <div class="price-note">Min. 1 pc · Bulk discounts available</div>
+      <a href="http://www.facebook.com/ariezz.augusto" target="_blank" class="order-btn">Order via Facebook</a>
+    </div>
+    <div class="product-card featured">
+      <span class="badge">Popular</span>
+      <h3>Tarpaulin Print</h3>
+      <p class="desc">Vibrant, weather-resistant outdoor tarpaulin. Any size. Rope & eyelet included.</p>
+      <div class="price-row"><span class="price">₱25</span><span class="price-unit">/ sq.ft.</span></div>
+      <div class="price-note">Standard size starts ₱250 · Rush available</div>
+      <a href="http://www.facebook.com/ariezz.augusto" target="_blank" class="order-btn primary">Order Now</a>
+    </div>
+    <div class="product-card">
+      <span class="badge">IDs</span>
+      <h3>PVC ID Card</h3>
+      <p class="desc">School or company IDs, membership cards. Full color, laminated, with or without lanyards.</p>
+      <div class="price-row"><span class="price">₱50</span><span class="price-unit">/ card</span></div>
+      <div class="price-note">Min. 5 pcs · Bulk pricing at 50+ pcs</div>
+      <a href="http://www.facebook.com/ariezz.augusto" target="_blank" class="order-btn">Order via Facebook</a>
+    </div>
+    <div class="product-card">
+      <span class="badge pink">Documents</span>
+      <h3>Flyers / Brochures</h3>
+      <p class="desc">A4, A5, or A6 flyers, full color, glossy or matte finish. Great for events and promos.</p>
+      <div class="price-row"><span class="price">₱8</span><span class="price-unit">/ sheet</span></div>
+      <div class="price-note">Min. 20 pcs · Double-sided available</div>
+      <a href="http://www.facebook.com/ariezz.augusto" target="_blank" class="order-btn">Order via Facebook</a>
+    </div>
+    <div class="product-card">
+      <span class="badge">Photo Prints</span>
+      <h3>Photo Printing</h3>
+      <p class="desc">4R, 5R, 8R and larger. Glossy or matte. Perfect gifts and keepsakes.</p>
+      <div class="price-row"><span class="price">₱15</span><span class="price-unit">/ 4R print</span></div>
+      <div class="price-note">Larger sizes available · Ask for pricing</div>
+      <a href="http://www.facebook.com/ariezz.augusto" target="_blank" class="order-btn">Order via Facebook</a>
+    </div>
+    <div class="product-card">
+      <span class="badge pink">Gifts</span>
+      <h3>Personalized Mug</h3>
+      <p class="desc">11oz white sublimation mug with your photo or design. Microwave & dishwasher safe.</p>
+      <div class="price-row"><span class="price">₱150</span><span class="price-unit">/ mug</span></div>
+      <div class="price-note">Min. 1 pc · Gift-ready packaging optional</div>
+      <a href="http://www.facebook.com/ariezz.augusto" target="_blank" class="order-btn">Order via Facebook</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-label">Simple Process</div>
+  <h2 class="section-title">How It Works</h2>
+  <p class="section-sub">Getting your prints is quick and easy — just four steps from concept to delivery.</p>
+
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-icon">💬</div>
+      <h3>Get in Touch</h3>
+      <p>Send us a message on Facebook or Messenger. Tell us what you need — quantity, size, and deadline.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-icon">🎨</div>
+      <h3>Send Your Design</h3>
+      <p>Upload your artwork (PNG, PDF, AI). No design? We'll create one for you with a small layout fee.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <div class="step-icon">✅</div>
+      <h3>Approve & Pay</h3>
+      <p>We send you a digital proof for approval. Pay via GCash or cash before we start printing.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <div class="step-icon">🚚</div>
+      <h3>Pick Up or Deliver</h3>
+      <p>Ready in 1–3 days depending on order size. Pick up locally or arrange delivery to your door.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="why-grid">
+    <div>
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-title">Print with Confidence</h2>
+      <p class="section-sub">We're not just a printing shop — we're your creative partner.</p>
+      <ul class="why-list">
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <div><h4>Vibrant CMYK Color Quality</h4><p>We calibrate every print for maximum color accuracy and saturation — your designs look exactly as intended.</p></div>
+        </li>
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <div><h4>Fast Turnaround</h4><p>Standard orders ready in 1–3 days. Rush 24-hour service available for urgent print needs.</p></div>
+        </li>
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <div><h4>Affordable Rates</h4><p>Competitive pricing for individuals, schools, organizations, and businesses of all sizes. Bulk discounts available.</p></div>
+        </li>
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <div><h4>Free Design Consultation</h4><p>Not sure how to set up your file? We'll help you get it print-ready at no extra charge.</p></div>
+        </li>
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <div><h4>Proof Before Printing</h4><p>You approve a digital proof before we print a single sheet. No surprises, ever.</p></div>
+        </li>
+      </ul>
+    </div>
+    <div class="why-visual">
+      <div style="font-size:0.85rem; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem;">Print Quality Metrics</div>
+      <div>
+        <div class="ink-meter-label"><span>Color Accuracy</span><span style="color:var(--cyan)">98%</span></div>
+        <div class="ink-bar"><div class="ink-fill" style="width:98%;background:var(--cyan)"></div></div>
+      </div>
+      <div>
+        <div class="ink-meter-label"><span>Customer Satisfaction</span><span style="color:var(--magenta)">100%</span></div>
+        <div class="ink-bar"><div class="ink-fill" style="width:100%;background:var(--magenta)"></div></div>
+      </div>
+      <div>
+        <div class="ink-meter-label"><span>On-Time Delivery</span><span style="color:var(--yellow)">95%</span></div>
+        <div class="ink-bar"><div class="ink-fill" style="width:95%;background:var(--yellow)"></div></div>
+      </div>
+      <div>
+        <div class="ink-meter-label"><span>Repeat Clients</span><span style="color:rgba(255,255,255,0.7)">80%</span></div>
+        <div class="ink-bar"><div class="ink-fill" style="width:80%;background:rgba(255,255,255,0.25)"></div></div>
+      </div>
+      <div style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid var(--ink-border); display:flex; gap:1rem; flex-wrap:wrap;">
+        <div style="flex:1; min-width:100px; background:rgba(0,200,215,0.07); border:1px solid rgba(0,200,215,0.15); border-radius:8px; padding:1rem; text-align:center;">
+          <div style="font-size:1.5rem; font-weight:700; font-family:'Playfair Display',serif; color:var(--accent)">GCash</div>
+          <div style="font-size:0.72rem; color:rgba(255,255,255,0.35); margin-top:2px;">Accepted</div>
+        </div>
+        <div style="flex:1; min-width:100px; background:rgba(233,30,140,0.07); border:1px solid rgba(233,30,140,0.15); border-radius:8px; padding:1rem; text-align:center;">
+          <div style="font-size:1.5rem; font-weight:700; font-family:'Playfair Display',serif; color:var(--magenta)">Cash</div>
+          <div style="font-size:0.72rem; color:rgba(255,255,255,0.35); margin-top:2px;">On Delivery</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-label">Our Work</div>
+  <h2 class="section-title">Featured Prints</h2>
+  <p class="section-sub">A glimpse of what we've made for our clients — t-shirts, tarpaulins, IDs, and more.</p>
+
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://bugzlife.netlify.app/Sabak_t-shirt2.jpg" alt="SABAK T-Shirt" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="gallery-placeholder" style="display:none"><span style="font-size:2rem">👕</span><span>SABAK T-Shirt</span></div>
+      <div class="gallery-overlay">View</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://bugzlife.netlify.app/All_souls_tshirt.jpg" alt="All Souls Day T-Shirt" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="gallery-placeholder" style="display:none"><span style="font-size:2rem">👕</span><span>All Souls Day</span></div>
+      <div class="gallery-overlay">View</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span>🖼️</span><span>Tarpaulin</span></div>
+      <div class="gallery-overlay">Inquire</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span>🎁</span><span>Custom Mugs</span></div>
+      <div class="gallery-overlay">Inquire</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span>🪪</span><span>ID Cards</span></div>
+      <div class="gallery-overlay">Inquire</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span>🎨</span><span>Custom Design</span></div>
+      <div class="gallery-overlay">Inquire</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Order Now</div>
+  <h2 class="section-title">Get Your Print Started</h2>
+  <p class="section-sub">Ready to print? Send us your details and we'll get back to you within a few hours.</p>
+
+  <div class="contact-wrap">
+    <div>
+      <p style="color:rgba(255,255,255,0.55); margin-bottom:0.5rem;">Prefer to reach us directly? Use any channel below:</p>
+      <div class="contact-channels">
+        <a href="http://www.facebook.com/ariezz.augusto" target="_blank" class="channel-btn">
+          <span class="channel-icon">📘</span>
+          <div class="channel-info"><strong>Facebook</strong><span>ariezz.augusto — Fastest response</span></div>
+        </a>
+        <a href="https://m.me/ariezz.augusto" target="_blank" class="channel-btn">
+          <span class="channel-icon">💬</span>
+          <div class="channel-info"><strong>Messenger</strong><span>Chat with us directly</span></div>
+        </a>
+        <a href="mailto:ariezz.augusto@gmail.com" class="channel-btn">
+          <span class="channel-icon">✉️</span>
+          <div class="channel-info"><strong>Email</strong><span>ariezz.augusto@gmail.com</span></div>
+        </a>
+      </div>
+      <div style="margin-top:2rem; padding:1.5rem; background:var(--ink-panel); border:1px solid var(--ink-border); border-radius:10px;">
+        <div style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.35); margin-bottom:0.75rem;">Operating Hours</div>
+        <div style="font-size:0.88rem; color:rgba(255,255,255,0.6);">Monday – Saturday: <strong style="color:var(--ink-white)">8:00 AM – 6:00 PM</strong></div>
+        <div style="font-size:0.88rem; color:rgba(255,255,255,0.6); margin-top:4px;">Sunday: <strong style="color:rgba(255,255,255,0.4)">By appointment</strong></div>
+        <div style="margin-top:0.75rem; font-size:0.82rem; color:var(--accent)">📍 Philippines</div>
+      </div>
+    </div>
+
+    <div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Juan dela Cruz" required>
+        </div>
+        <div class="form-group">
+          <label>Contact Number or Email</label>
+          <input type="text" placeholder="09XX XXX XXXX or email@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>Print Service Needed</label>
+          <select required>
+            <option value="">Select a service...</option>
+            <option>T-Shirt / Apparel Printing</option>
+            <option>Tarpaulin / Banner</option>
+            <option>ID Cards / Lanyards</option>
+            <option>Flyers / Brochures</option>
+            <option>Photo Printing</option>
+            <option>Personalized Gifts / Mugs</option>
+            <option>Stickers / Labels</option>
+            <option>Custom Design</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message / Details</label>
+          <textarea placeholder="Tell us your quantity, size, deadline, and any specific requirements..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Inquiry →</button>
+        <div id="form-success">✓ Message sent! We'll get back to you shortly via Messenger.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <img src="ADP_logo.JPG" alt="ADP Logo">
+    <span>© 2025 Aries Digital Printing · The Ink Solutions · 🇵🇭 Philippines</span>
+  </div>
+  <div class="footer-links">
+    <a href="https://bugzlife.netlify.app/" target="_blank">BugzLife</a>
+    <a href="#services">Services</a>
+    <a href="#products">Pricing</a>
+    <a href="#contact">Contact</a>
+    <a href="http://www.facebook.com/ariezz.augusto" target="_blank">Facebook</a>
+  </div>
+  <div class="cmyk-badge">
+    <span style="background:var(--cyan)"></span>
+    <span style="background:var(--magenta)"></span>
+    <span style="background:var(--yellow)"></span>
+    <span style="background:#555"></span>
+    CMYK
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.submit-btn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  setTimeout(() => {
+    document.getElementById('form-success').style.display = 'block';
+    btn.textContent = '✓ Sent!';
+    btn.style.background = 'rgba(0,200,215,0.2)';
+    btn.style.color = 'var(--accent)';
+  }, 1000);
+}
+
+// Smooth reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) {
+      el.target.style.opacity = '1';
+      el.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.service-card, .product-card, .process-step, .why-item, .gallery-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>

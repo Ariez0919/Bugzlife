@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIY Trip to Baguio 2023 | BugzLife</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#13151a;--bg2:#1c1f27;--bg3:#242831;
+    --accent:#818cf8;--accent2:#6366f1;--accent3:#a5b4fc;
+    --accent-dim:rgba(129,140,248,0.1);--accent-border:rgba(129,140,248,0.25);
+    --text:#eef0f6;--text2:#9399a6;--text3:#5a6072;
+    --border:rgba(255,255,255,0.07);
+    --font:'Outfit',sans-serif;--serif:'Lora',serif;
+  }
+  body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;background:rgba(19,21,26,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+  .nav-logo{font-size:1.05rem;font-weight:700;color:var(--text);text-decoration:none}
+  .nav-logo span{color:var(--accent)}
+  .nav-back{display:inline-flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--text2);text-decoration:none;transition:color 0.2s}
+  .nav-back:hover{color:var(--accent3)}
+  .post-hero{position:relative;z-index:1;padding:6rem 2.5rem 0;max-width:800px;margin:0 auto}
+  .post-cat{display:inline-block;background:var(--accent2);color:#fff;font-size:0.7rem;font-weight:600;padding:3px 12px;border-radius:20px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1rem}
+  .post-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.2;letter-spacing:-0.02em;margin-bottom:1rem;color:var(--text)}
+  .post-meta{display:flex;align-items:center;gap:10px;font-size:0.8rem;color:var(--text3);margin-bottom:2rem;flex-wrap:wrap}
+  .post-cover{width:100%;border-radius:16px;overflow:hidden;margin-bottom:0;aspect-ratio:16/7}
+  .post-cover img{width:100%;height:100%;object-fit:cover;display:block}
+  .post-body{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:3rem 2.5rem 6rem}
+  .post-body p{color:var(--text2);font-size:1rem;line-height:1.9;font-weight:300;margin-bottom:1.5rem}
+  .post-body h3,.post-body h4{font-size:1.2rem;font-weight:700;color:var(--text);margin:2.5rem 0 1rem;line-height:1.3}
+  .post-body h4{font-size:1rem}
+  .post-body strong{color:var(--text);font-weight:600}
+  .post-body em{font-style:italic;color:var(--text2)}
+  .post-body ul,.post-body ol{margin:1rem 0 1.5rem 1.5rem;color:var(--text2)}
+  .post-body li{margin-bottom:0.5rem;font-size:0.97rem;line-height:1.8;font-weight:300}
+  .post-body .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin:2rem 0}
+  .post-body .photo-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block}
+  .post-body .photo-wide{width:100%;border-radius:12px;margin:2rem 0;display:block;border:1px solid var(--border)}
+  .post-body .itinerary{background:var(--bg2);border:1px solid var(--accent-border);border-radius:12px;padding:1.5rem;margin:2rem 0;font-size:0.9rem;color:var(--text2);line-height:1.9;white-space:pre-line}
+  .back-btn{display:inline-flex;align-items:center;gap:8px;padding:0.65rem 1.25rem;border:1px solid var(--border);border-radius:8px;color:var(--text2);font-size:0.85rem;font-weight:500;text-decoration:none;transition:all 0.2s;margin-bottom:3rem}
+  .back-btn:hover{border-color:var(--accent-border);color:var(--accent3)}
+  .related{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2.5rem}
+  .related-inner{max-width:800px;margin:0 auto}
+  .related h3{font-size:0.78rem;font-weight:600;color:var(--text2);margin-bottom:1.5rem;letter-spacing:0.05em;text-transform:uppercase}
+  .related-links{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .related-link{display:flex;align-items:center;gap:12px;padding:1rem;background:var(--bg3);border:1px solid var(--border);border-radius:10px;text-decoration:none;transition:all 0.2s}
+  .related-link:hover{border-color:var(--accent-border);transform:translateY(-1px)}
+  .related-link img{width:60px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0}
+  .rl-cat{font-size:0.65rem;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px}
+  .rl-title{font-size:0.85rem;font-weight:600;color:var(--text);line-height:1.3}
+  footer{text-align:center;padding:2rem;font-size:0.8rem;color:var(--text3);border-top:1px solid var(--border)}
+  footer a{color:var(--accent3);text-decoration:none}
+  @media(max-width:768px){
+    .post-hero,.post-body{padding-left:1.25rem;padding-right:1.25rem}
+    .related{padding:2rem 1.25rem}
+    .related-links{grid-template-columns:1fr}
+    .post-body .photo-grid{grid-template-columns:repeat(2,1fr)}
+    nav{padding:0 1.25rem}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Bugz<span>Life</span></a>
+  <a href="index.html#blog" class="nav-back">← Back to Blog</a>
+</nav>
+
+<div class="post-hero">
+  <div class="post-cat">Travel</div>
+  <h1 class="post-title">DIY TRIP TO BAGUIO 2023</h1>
+  <div class="post-meta">
+    <span>✍️ Ariezz Augusto</span>
+    <span>·</span>
+    <span>📅 March 1, 2023</span>
+    <span>·</span>
+    <span>⏱ 3 min read</span>
+  </div>
+  <div class="post-cover">
+    <img src="https://static.wixstatic.com/media/4aff93_ffc9db92c36a478992fcbb0950b8b40b~mv2.jpg/v1/fill/w_980,h_430,fp_0.50_0.50,q_90,enc_avif,quality_auto/4aff93_ffc9db92c36a478992fcbb0950b8b40b~mv2.jpg" alt="Baguio 2023">
+  </div>
+</div>
+
+<div class="post-body">
+  <a href="index.html#blog" class="back-btn">← Back to all stories</a>
+
+  <p>Baguio City is one of the most popular tourist destinations in the Philippines. Filipinos love visiting this place because of its cold weather, stunning views, affordable food, and rich culture and heritage.</p>
+
+  <h3>Planning for a Trip</h3>
+
+  <p>We already decided for a 3-day DIY trip to Baguio last Feb 25–27, 2023 before the short notice of Declared Holiday last Feb 24, 2023. <em>(Kaya sayang at pede pa sanang gawin ng 4 days trip)</em> Since it's a PanagBenga Festival in Baguio, it's expected that buses or transient houses were fully booked. <em>Ma swerte kami at may nakuha pa kaming Bus papuntang Baguio</em> at Sampaloc Bus Terminal. The Cubao and Pasay Victory Liner were already fully booked.</p>
+
+  <h4>Going to Victory Liner Bus Terminal in Sampaloc:</h4>
+  <ul>
+    <li>From Araneta Center Cubao, ride the LRT 2 train and choose 'Legarda' as your drop off point.</li>
+    <li>Take a 7-minute walk to Victory Liner Sampaloc station.</li>
+  </ul>
+
+  <div class="photo-grid">
+    <img src="https://static.wixstatic.com/media/4aff93_54d6bcca2b1449afadfc01632f8e4292~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_54d6bcca2b1449afadfc01632f8e4292~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_655352a617f742708983e5d6a9be6936~mv2.jpg/v1/fill/w_324,h_323,fp_0.50_0.50,q_90/4aff93_655352a617f742708983e5d6a9be6936~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_1d35323cc92b43a6876b2ceaec88214d~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_1d35323cc92b43a6876b2ceaec88214d~mv2.jpg" alt="">
+  </div>
+
+  <h3>Arriving at Baguio</h3>
+
+  <p>Since we didn't have a booked transient house, we decided to explore the place and look for one once we arrived. We arrived at Baguio Victory bus terminal at around 3pm (at least 6 hours trip from Sampaloc Manila). Some bystanders offered us a transient house at ₱3,000 per night. <em>Medyo mahal daw at punuan ang mga transient house because of the festival.</em></p>
+
+  <p>So naghahanap nalang kami ng mga Pension Inn or any budget Hotel. Luckily one taxi driver offered us some help. We found <strong>Pines City Pension Inn</strong> at ₱350 per head or ₱750 per room with 3 beds and hot and cold shower.</p>
+
+  <h3>DIY Itinerary Tour</h3>
+
+  <p>It's my 3rd time visiting Baguio. We decided to go to places we haven't been to yet — BenCab Museum, Mount Costa, Wright Park, and Tan Awan Village.</p>
+
+  <h4>BenCab Museum</h4>
+  <p>The BenCab Museum is named after the gallery's main artist, painter, and printmaker Benedicto Cabrera — a National Artist. The museum is divided into galleries showcasing amazing ancient tribal statues, figures, and weapons from the past.</p>
+
+  <img class="photo-wide" src="https://static.wixstatic.com/media/4aff93_efd6b712ffeb4c6fb50722495db679dd~mv2.jpg/v1/fill/w_980,h_380,fp_0.50_0.50,q_90/4aff93_efd6b712ffeb4c6fb50722495db679dd~mv2.jpg" alt="BenCab Museum">
+
+  <div class="photo-grid">
+    <img src="https://static.wixstatic.com/media/4aff93_790d9c8f9ea140f6a92c88d12eb69804~mv2.jpg/v1/fill/w_980,h_380,fp_0.50_0.50,q_90/4aff93_790d9c8f9ea140f6a92c88d12eb69804~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_19953f5068814cef8d16299c88b9b5db~mv2.jpg/v1/fill/w_980,h_380,fp_0.50_0.50,q_90/4aff93_19953f5068814cef8d16299c88b9b5db~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_304f788eff6141d39e296d087fb25e12~mv2.jpg/v1/fill/w_980,h_380,fp_0.50_0.50,q_90/4aff93_304f788eff6141d39e296d087fb25e12~mv2.jpg" alt="">
+  </div>
+
+  <h4>Mount Costa</h4>
+  <p>Mount Costa is the outdoor living room everybody dreams of. With its collection of 24 gardens inspired by the world's best gardens, it is one of the newest attractions near Baguio. It is located at Lamtang Pico Road, Barangay Puguis, La Trinidad.</p>
+
+  <div class="photo-grid">
+    <img src="https://static.wixstatic.com/media/4aff93_c0f68a5a4581427ba5bfc7be3bf3e678~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_c0f68a5a4581427ba5bfc7be3bf3e678~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_4f64bd30bbd541128b3ef3d9b1c2df47~mv2.jpg/v1/fill/w_324,h_323,fp_0.50_0.50,q_90/4aff93_4f64bd30bbd541128b3ef3d9b1c2df47~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_b14494e2bc7947b79569a7f39ade135a~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_b14494e2bc7947b79569a7f39ade135a~mv2.jpg" alt="">
+  </div>
+
+  <h4>PanagBenga Festival 2023</h4>
+  <p>The Panagbenga festival is an annual flower festival celebrated every February in Baguio as an ode to the city's flowers. We witnessed a float parade of flowers and some local artists/politicians including Sen. Imee Marcos, Sen. Lito Lapid, Lovie Poe, and Benjie Paras.</p>
+
+  <div class="photo-grid">
+    <img src="https://static.wixstatic.com/media/4aff93_0d8e7638e74e409db528eef89668c02e~mv2.jpg/v1/fill/w_323,h_242,fp_0.50_0.50,q_90/4aff93_0d8e7638e74e409db528eef89668c02e~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_6b91e59af2474311b3ddec63c6d4c083~mv2.jpg/v1/fill/w_323,h_242,fp_0.50_0.50,q_90/4aff93_6b91e59af2474311b3ddec63c6d4c083~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_400afd544ea14f26904a518ae4926af0~mv2.jpg/v1/fill/w_324,h_242,fp_0.50_0.50,q_90/4aff93_400afd544ea14f26904a518ae4926af0~mv2.jpg" alt="">
+  </div>
+
+  <h4>Henna Tattoo at Wright Park</h4>
+  <p>Me and Mike decided to have a henna tattoo at Wright Park. Thank you Henna Tattoo/Tiger Jade for featuring us on your Facebook page!</p>
+
+  <div class="photo-grid">
+    <img src="https://static.wixstatic.com/media/4aff93_693bb905dbba4a828fc1c7332d907683~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_693bb905dbba4a828fc1c7332d907683~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_8ff053b41fa246918346b698e4a16793~mv2.jpg/v1/fill/w_324,h_323,fp_0.50_0.50,q_90/4aff93_8ff053b41fa246918346b698e4a16793~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_ed4422fa71764308b01d3fadb9d10f94~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_ed4422fa71764308b01d3fadb9d10f94~mv2.jpg" alt="">
+  </div>
+
+  <h3>Last Day at Baguio</h3>
+
+  <p>Before leaving, we enjoyed the activities and night life of the city — boating at Burnham Park, hanging out at SM Baguio (walang aircon pero malamig), and trying local food and delicacies.</p>
+
+  <div class="photo-grid">
+    <img src="https://static.wixstatic.com/media/4aff93_392b8c18c1ae463c8fe324778af43ac7~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_392b8c18c1ae463c8fe324778af43ac7~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_c26a8d5d91e84b0ca0a6f7a933e486c7~mv2.jpg/v1/fill/w_324,h_323,fp_0.50_0.50,q_90/4aff93_c26a8d5d91e84b0ca0a6f7a933e486c7~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_991c26431773456ca0461abc97670897~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_991c26431773456ca0461abc97670897~mv2.jpg" alt="">
+  </div>
+
+  <p><em>Indeed, Baguio City's cold weather, breathtaking views, and endless list of scenic attractions are some of the reasons why I always come back to this place. And the best of all — the local people. Madaming magaganda sa Baguio.</em></p>
+</div>
+
+<div class="related">
+  <div class="related-inner">
+    <h3>More Stories</h3>
+    <div class="related-links">
+      <a href="blog-anencephaly.html" class="related-link">
+        <img src="https://static.wixstatic.com/media/4aff93_93a48e3b12474185ab09f598f892a423~mv2.jpg/v1/fill/w_200,h_200,fp_0.50_0.50,q_85/4aff93_93a48e3b12474185ab09f598f892a423~mv2.jpg" alt="">
+        <div>
+          <div class="rl-cat">Personal</div>
+          <div class="rl-title">Our Journey of Love: With an Anencephaly Baby.</div>
+        </div>
+      </a>
+      <a href="blog-sembrano.html" class="related-link">
+        <img src="https://static.wixstatic.com/media/4aff93_051d3365e219432a8f771aa0b9962f01~mv2.jpg/v1/fill/w_200,h_200,fp_0.50_0.50,q_85/4aff93_051d3365e219432a8f771aa0b9962f01~mv2.jpg" alt="">
+        <div>
+          <div class="rl-cat">Adventure</div>
+          <div class="rl-title">Mt. Sembrano: A Hike for a Cause</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 <a href="index.html">BugzLife</a> · Ariezz Augusto</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RESUME | Aries Augusto – Business Analyst & QA Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:        #0b0e14;
+    --surface:   #111520;
+    --card:      #161c2a;
+    --border:    #1e2a42;
+    --accent:    #3b82f6;
+    --accent2:   #60efff;
+    --gold:      #f0b429;
+    --text:      #e8eaf0;
+    --muted:     #7a8499;
+    --dim:       #3a4255;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: .5;
+  }
+
+  /* ── HEADER / NAV ── */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(11,14,20,.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: .75rem; letter-spacing: .2em;
+    color: var(--accent2); text-transform: uppercase;
+  }
+
+  nav { display: flex; gap: 2rem; }
+  nav a {
+    font-size: .78rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    transition: color .2s;
+  }
+  nav a:hover, nav a.active { color: var(--accent2); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    padding: 7rem 2rem 5rem;
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 260px; gap: 4rem; align-items: center;
+  }
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem; letter-spacing: .2em; color: var(--accent);
+    text-transform: uppercase; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .hero-tag::before {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1.1; margin-bottom: .5rem;
+    background: linear-gradient(135deg, #e8eaf0 30%, var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  .hero-title {
+    font-family: 'DM Mono', monospace;
+    font-size: .85rem; letter-spacing: .15em;
+    color: var(--gold); margin-bottom: 1.5rem; text-transform: uppercase;
+  }
+
+  .hero p {
+    color: var(--muted); max-width: 560px;
+    font-size: .95rem; line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn {
+    padding: .65rem 1.6rem;
+    font-size: .8rem; letter-spacing: .12em; text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+    border-radius: 3px; cursor: pointer; text-decoration: none;
+    transition: all .25s;
+  }
+  .btn-primary {
+    background: var(--accent); color: #fff; border: none;
+  }
+  .btn-primary:hover { background: var(--accent2); color: var(--bg); }
+  .btn-ghost {
+    background: transparent; color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--accent2); color: var(--accent2); }
+
+  /* ── AVATAR CARD ── */
+  .avatar-card {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+  }
+  .avatar-card::before {
+    content: '';
+    position: absolute; top: -1px; left: 20%; right: 20%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent2), transparent);
+  }
+
+  .avatar-img {
+    width: 110px; height: 140px;
+    border-radius: 3px; object-fit: cover;
+    border: 2px solid var(--border);
+    margin: 0 auto 1rem;
+    display: block;
+    background: linear-gradient(135deg, var(--dim), var(--border));
+    position: relative; overflow: hidden;
+  }
+  .avatar-placeholder {
+    width: 110px; height: 140px;
+    border-radius: 3px; background: linear-gradient(135deg, var(--dim), var(--border));
+    margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--border); color: var(--muted); font-size: 2.5rem;
+  }
+
+  .avatar-name {
+    font-size: .95rem; font-weight: 600; margin-bottom: .2rem;
+  }
+  .avatar-role {
+    font-family: 'DM Mono', monospace;
+    font-size: .65rem; letter-spacing: .12em; color: var(--accent);
+    text-transform: uppercase; margin-bottom: 1.2rem;
+  }
+
+  .contact-list { list-style: none; text-align: left; }
+  .contact-list li {
+    font-size: .78rem; color: var(--muted);
+    padding: .3rem 0; border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; gap: .5rem;
+  }
+  .contact-list li:last-child { border-bottom: none; }
+  .contact-list .icon { color: var(--accent2); flex-shrink: 0; margin-top: 2px; }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    max-width: 1100px; margin: 0 auto;
+    padding: 4rem 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: .68rem; letter-spacing: .22em; color: var(--accent);
+    text-transform: uppercase; margin-bottom: .6rem;
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── SKILLS GRID ── */
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+
+  .skill-pill {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 4px; padding: .8rem 1.2rem;
+    font-family: 'DM Mono', monospace; font-size: .78rem;
+    letter-spacing: .06em; color: var(--muted);
+    transition: all .2s;
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .skill-pill::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); flex-shrink: 0;
+  }
+  .skill-pill:hover {
+    border-color: var(--accent2); color: var(--accent2);
+    transform: translateX(4px);
+  }
+
+  /* ── EXPERIENCE TIMELINE ── */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: .5rem; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+
+  .timeline-item { position: relative; margin-bottom: 3rem; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -2.35rem; top: .4rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  .timeline-date {
+    font-family: 'DM Mono', monospace;
+    font-size: .68rem; letter-spacing: .14em; color: var(--gold);
+    text-transform: uppercase; margin-bottom: .4rem;
+  }
+
+  .timeline-company {
+    font-size: 1rem; font-weight: 600; margin-bottom: .1rem;
+    color: var(--text);
+  }
+  .timeline-role {
+    font-family: 'DM Mono', monospace;
+    font-size: .72rem; letter-spacing: .1em;
+    color: var(--accent2); margin-bottom: .3rem;
+  }
+  .timeline-addr {
+    font-size: .78rem; color: var(--muted); margin-bottom: .8rem;
+    font-style: italic;
+  }
+
+  .resp-list { list-style: none; }
+  .resp-list li {
+    font-size: .88rem; color: var(--muted);
+    padding: .25rem 0 .25rem 1.2rem;
+    position: relative; line-height: 1.6;
+  }
+  .resp-list li::before {
+    content: '›'; position: absolute; left: 0;
+    color: var(--accent); font-size: 1rem;
+  }
+
+  /* ── TOOLS GRID ── */
+  .tools-row {
+    display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .8rem;
+  }
+  .tool-tag {
+    font-family: 'DM Mono', monospace; font-size: .68rem;
+    letter-spacing: .1em; text-transform: uppercase;
+    padding: .25rem .75rem;
+    background: rgba(59,130,246,.1);
+    border: 1px solid rgba(59,130,246,.25);
+    border-radius: 2px; color: var(--accent);
+  }
+
+  /* ── EDUCATION ── */
+  .edu-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
+  .edu-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 4px; padding: 1.4rem 1.6rem;
+    transition: border-color .2s;
+  }
+  .edu-card:hover { border-color: var(--accent2); }
+  .edu-level {
+    font-family: 'DM Mono', monospace; font-size: .65rem;
+    letter-spacing: .18em; color: var(--gold); text-transform: uppercase;
+    margin-bottom: .5rem;
+  }
+  .edu-school { font-size: .95rem; font-weight: 600; margin-bottom: .2rem; }
+  .edu-degree { font-size: .82rem; color: var(--muted); }
+
+  /* ── QUOTE SECTION ── */
+  .quote-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 2rem; text-align: center;
+  }
+  .quote-text {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    max-width: 800px; margin: 0 auto 1rem;
+    line-height: 1.5; color: var(--muted);
+  }
+  .quote-text span { color: var(--text); }
+  .quote-author {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem; letter-spacing: .16em;
+    color: var(--accent); text-transform: uppercase;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .footer-copy {
+    font-size: .75rem; color: var(--dim);
+    font-family: 'DM Mono', monospace; letter-spacing: .1em;
+  }
+  .social-links { display: flex; gap: 1rem; }
+  .social-links a {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); text-decoration: none; font-size: .85rem;
+    transition: all .2s;
+  }
+  .social-links a:hover {
+    border-color: var(--accent2); color: var(--accent2);
+    box-shadow: 0 0 10px rgba(96,239,255,.2);
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in { opacity: 0; transform: translateY(24px); animation: fadeIn .7s ease forwards; }
+  @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+  .fade-in:nth-child(1) { animation-delay: .1s; }
+  .fade-in:nth-child(2) { animation-delay: .25s; }
+  .fade-in:nth-child(3) { animation-delay: .4s; }
+  .fade-in:nth-child(4) { animation-delay: .55s; }
+
+  /* ── GLOWING ORBS ── */
+  .orb {
+    position: fixed; border-radius: 50%; pointer-events: none; z-index: -1;
+    filter: blur(80px); opacity: .15;
+  }
+  .orb-1 { width: 400px; height: 400px; background: var(--accent); top: -100px; right: -100px; }
+  .orb-2 { width: 300px; height: 300px; background: var(--accent2); bottom: 200px; left: -80px; }
+
+  /* ── PROGRESS BAR (languages) ── */
+  .lang-grid { display: grid; gap: 1rem; max-width: 600px; }
+  .lang-item label {
+    display: flex; justify-content: space-between;
+    font-size: .8rem; color: var(--muted); margin-bottom: .3rem;
+    font-family: 'DM Mono', monospace; letter-spacing: .08em;
+  }
+  .bar-track {
+    height: 4px; background: var(--border); border-radius: 2px; overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%; border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    animation: grow 1.2s ease forwards;
+    transform-origin: left; transform: scaleX(0);
+  }
+  @keyframes grow { to { transform: scaleX(1); } }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .avatar-card { max-width: 280px; margin: 0 auto; }
+    nav { display: none; }
+    footer { justify-content: center; text-align: center; }
+  }
+
+  /* ── NAV OVERRIDES — matches index.html ── */
+  header {
+    position: fixed !important;
+    top: 0; left: 0; right: 0;
+    height: 64px !important;
+    padding: 0 2.5rem !important;
+    background: rgba(19,21,26,0.88) !important;
+    backdrop-filter: blur(16px) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+  }
+  .nav-logo {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em !important;
+    color: #eef0f6 !important;
+    text-transform: none !important;
+    text-decoration: none;
+  }
+  nav { display: flex; gap: 2rem; align-items: center; }
+  nav a {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    color: #9399a6 !important;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: #eef0f6 !important; }
+  nav a.active { color: #a5b4fc !important; font-weight: 600 !important; }
+  .btn-resume-nav {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 0.42rem 1rem;
+    background: linear-gradient(135deg, #6366f1, #818cf8) !important;
+    color: #fff !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 0.78rem !important; font-weight: 600 !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    letter-spacing: 0.02em !important;
+    text-transform: none !important;
+    transition: all 0.2s;
+    border: 1px solid transparent !important;
+    box-shadow: 0 2px 12px rgba(99,102,241,0.35);
+  }
+  .btn-resume-nav:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(99,102,241,0.5);
+    background: linear-gradient(135deg, #818cf8, #a5b4fc) !important;
+    color: #fff !important;
+  }
+
+  /* ── CONTACT SECTION — matches index.html ── */
+  .idx-contact {
+    max-width: 1100px; margin: 0 auto;
+    padding: 5rem 2rem;
+    border-top: 1px solid #1e2a42;
+  }
+  .idx-section-tag { font-size: 0.75rem; font-weight: 600; color: #818cf8; margin-bottom: 0.6rem; display: block; letter-spacing: 0.08em; text-transform: uppercase; font-family: 'Outfit', sans-serif; }
+  .idx-section-title { font-family: 'Outfit', sans-serif; font-size: clamp(1.75rem,3vw,2.4rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 0.75rem; color: #eef0f6; }
+  .idx-section-subtitle { color: #9399a6; font-size: 0.97rem; font-weight: 300; max-width: 500px; margin-bottom: 3rem; line-height: 1.8; font-family: 'Outfit', sans-serif; }
+  .idx-contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .idx-contact-info p { color: #9399a6; font-size: 0.95rem; line-height: 1.9; margin-bottom: 2rem; font-weight: 300; font-family: 'Outfit', sans-serif; }
+  .idx-social-links { display: flex; flex-direction: column; gap: 0.6rem; }
+  .idx-social-link { display: flex; align-items: center; gap: 12px; padding: 0.85rem 1rem; background: #1c1f27; border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; text-decoration: none; color: #9399a6; font-size: 0.875rem; transition: all 0.2s; font-family: 'Outfit', sans-serif; }
+  .idx-social-link:hover { border-color: rgba(129,140,248,0.25); color: #a5b4fc; background: rgba(129,140,248,0.1); }
+  .idx-social-link-arrow { margin-left: auto; font-size: 0.72rem; opacity: 0.5; }
+  .idx-contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .idx-form-group { display: flex; flex-direction: column; gap: 6px; }
+  .idx-form-group label { font-size: 0.78rem; font-weight: 500; color: #9399a6; font-family: 'Outfit', sans-serif; }
+  .idx-form-group input, .idx-form-group textarea { padding: 0.75rem 1rem; background: #1c1f27; border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; color: #eef0f6; font-family: 'Outfit', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s, background 0.2s; resize: vertical; width: 100%; }
+  .idx-form-group input:focus, .idx-form-group textarea:focus { border-color: rgba(129,140,248,0.25); background: #242831; }
+  .idx-form-group input::placeholder, .idx-form-group textarea::placeholder { color: #5a6072; }
+  .idx-send-btn { display: flex; align-items: center; justify-content: center; width: 100%; padding: 0.72rem 1.5rem; background: #6366f1; color: #fff; font-size: 0.875rem; font-weight: 600; border-radius: 8px; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; }
+  .idx-send-btn:hover { background: #818cf8; transform: translateY(-1px); }
+
+  /* ── FOOTER — matches index.html ── */
+  .idx-footer { border-top: 1px solid #1e2a42; padding: 2rem 2.5rem; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .idx-footer p { font-size: 0.8rem; color: #5a6072; font-weight: 300; font-family: 'Outfit', sans-serif; }
+  .idx-footer a { color: #a5b4fc; text-decoration: none; }
+
+  /* ── FLOATING MESSENGER ── */
+  .fb-float { position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 500; display: flex; align-items: center; gap: 10px; padding: 0.7rem 1.1rem 0.7rem 0.9rem; background: #0084ff; border-radius: 50px; text-decoration: none; color: #fff; box-shadow: 0 4px 20px rgba(0,132,255,0.45); transition: all 0.25s; overflow: hidden; max-width: 52px; }
+  .fb-float:hover { max-width: 200px; box-shadow: 0 6px 28px rgba(0,132,255,0.6); transform: translateY(-2px); }
+  .fb-float-label { font-size: 0.82rem; font-weight: 600; white-space: nowrap; opacity: 0; transition: opacity 0.2s 0.05s; font-family: 'Outfit', sans-serif; }
+  .fb-float:hover .fb-float-label { opacity: 1; }
+
+  /* fix body top padding for fixed nav */
+  body { padding-top: 64px; }
+
+  @media (max-width: 768px) {
+    header { padding: 0 1.25rem !important; }
+    nav { display: none !important; }
+    .idx-contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .idx-footer { flex-direction: column; align-items: flex-start; padding: 1.5rem 1.25rem; }
+    .fb-float { bottom: 1.25rem; right: 1.25rem; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ORBS -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- HEADER — same as index.html -->
+<header>
+  <a href="index.html#home" class="nav-logo">BugzLife - <b style="color:red;">Aries Augusto</b></a>
+  <nav>
+    <a href="index.html#about">About</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#gallery-preview">Gallery</a>
+    <a href="index.html#blog">Blog</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="RESUME.html" class="btn-resume-nav">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Resume
+    </a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <p class="hero-tag fade-in">Portfolio · Resume</p>
+    <h1 class="fade-in">Aries Augusto</h1>
+    <p class="hero-title fade-in">Business Analyst · QA / Software Test Engineer</p>
+    <p class="fade-in">
+      An IT professional with over 15 years of experience across business analysis, software testing, and development.
+      Currently working as a Business Analyst at GECO Asia Pte Ltd — specializing in requirements gathering, stakeholder management, UAT/SIT, and translating business needs into technical solutions.
+    </p>
+    <div class="hero-actions fade-in">
+      <a href="#experience" class="btn btn-primary">View Experience</a>
+      <a href="#contact" class="btn btn-ghost">Contact Me</a>
+    </div>
+  </div>
+
+  <div class="avatar-card fade-in">
+    <!-- <div class="avatar-placeholder">👤</div> -->
+	
+	<div class="avatar-placeholder">
+    <img src="grad3.jpg" alt="Profile Picture">
+</div>
+
+<style>
+.avatar-placeholder img{
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #00ff88;
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+}
+</style>
+	
+    <div class="avatar-name">Aries Augusto</div>
+    <div class="avatar-role">Business Analyst · QA Engineer</div>
+    <ul class="contact-list">
+      <li>
+	  <!--
+        <span class="icon">📍</span>
+        <span>Dap-Dap Mactan, Lapu Lapu City, Cebu</span>
+      </li> -->
+      <li>
+        <span class="icon">🏡</span>
+        <span>Dap-Dap Mactan, Lapu-Lapu City, Cebu 6015</span>
+      </li>
+      <li>
+        <span class="icon">✉️</span>
+        <span>aries2004@gmail.com</span>
+      </li>
+      <li>
+        <span class="icon">📞</span>
+        <span>09451951752</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <p class="quote-text">
+    "<span>In the realm of software testing, being a skilled tester is more challenging than being
+    a good developer.</span> Testing demands a deep understanding of the development process and its products,
+    along with the ability to anticipate potential faults and errors."
+  </p>
+  <p class="quote-author">— John D. McGregor</p>
+</div>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <p class="section-label">Technical Stack</p>
+  <h2 class="section-title">Skills & Tools</h2>
+
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 3rem; flex-wrap: wrap;">
+    <div>
+      <p class="section-label" style="margin-bottom:1rem;">Languages</p>
+      <div class="lang-grid">
+        <div class="lang-item">
+          <label><span>HTML / CSS</span><span>90%</span></label>
+          <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="lang-item">
+          <label><span>C# .NET</span><span>75%</span></label>
+          <div class="bar-track"><div class="bar-fill" style="width:75%; animation-delay:.2s"></div></div>
+        </div>
+        <div class="lang-item">
+          <label><span>Java J2SE</span><span>65%</span></label>
+          <div class="bar-track"><div class="bar-fill" style="width:65%; animation-delay:.4s"></div></div>
+        </div>
+        <div class="lang-item">
+          <label><span>Visual Basic</span><span>70%</span></label>
+          <div class="bar-track"><div class="bar-fill" style="width:70%; animation-delay:.6s"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="section-label" style="margin-bottom:1rem;">Tools & Platforms</p>
+      <div class="skills-grid">
+        <div class="skill-pill">HP Quality Center</div>
+        <div class="skill-pill">Clear Quest</div>
+        <div class="skill-pill">MySQL</div>
+        <div class="skill-pill">Selenium</div>
+        <div class="skill-pill">CCB Testing</div>
+        <div class="skill-pill">Jenkins</div>
+        <div class="skill-pill">Azure DevOps</div>
+        <div class="skill-pill">Postman</div>
+        <div class="skill-pill">ORACLE CCB</div>
+        <div class="skill-pill">Jira</div>
+		<div class="skill-pill">Playwright</div>
+		<div class="skill-pill">IBM Rational Performance Tester</div>
+        <div class="skill-pill">Requirements Gathering</div>
+        <div class="skill-pill">User Stories / Use Cases</div>
+        <div class="skill-pill">Traceability Matrix</div>
+      <!--  <div class="skill-pill">Stakeholder Management</div> -->
+        <div class="skill-pill">Process Mapping</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <p class="section-label">Career History</p>
+  <h2 class="section-title">Work Experience</h2>
+
+  <div class="timeline">
+
+    <!-- JOB 1 — CURRENT -->
+    <div class="timeline-item">
+      <p class="timeline-date" style="display:flex;align-items:center;gap:.6rem;">
+        May 2025 – Present · 1 yr 1 mo
+        <span style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .6rem;background:rgba(96,239,255,.1);border:1px solid rgba(96,239,255,.25);border-radius:2px;color:var(--accent2);">● Current</span>
+      </p>
+      <p class="timeline-company">GECO Asia Pte Ltd</p>
+      <p class="timeline-role">Business Analyst · Contract</p>
+      <p class="timeline-addr">Cebu, Central Visayas, Philippines · On-site</p>
+      <ul class="resp-list">
+        <li>Collaborate with stakeholders, product owners, architects, developers, and QA teams to deliver business solutions that align with customer needs and organizational objectives.</li>
+        <li>Facilitate requirements gathering, process analysis, and solution validation while ensuring effective communication between business and technical teams throughout the project lifecycle.</li>
+        <li>Drive product vision by advocating customer needs and supporting a human-centered design approach.</li>
+        <li>Gather, analyze, document, and validate business and functional requirements with business stakeholders.</li>
+        <li>Define detailed business requirements, user stories, use cases, workflows, and acceptance criteria.</li>
+        <li>Maintain requirements documentation and traceability matrices to ensure end-to-end requirement coverage.</li>
+        <li>Partner with solution architects, designers, and development teams to translate business requirements into effective technical solutions.</li>
+        <li>Validate proposed solutions through stakeholder feedback, reviews, and iterative refinement.</li>
+        <li>Support User Acceptance Testing (UAT) &amp; System Integration Testing (SIT) by defining test scenarios, expected outcomes, and acceptance criteria.</li>
+        <li>Participate in quality assurance reviews to ensure delivered solutions meet business objectives and user expectations.</li>
+      </ul>
+      <div class="tools-row">
+        <span class="tool-tag">Requirements Analysis</span>
+        <span class="tool-tag">User Stories</span>
+        <span class="tool-tag">UAT</span>
+        <span class="tool-tag">SIT</span>
+        <span class="tool-tag">Process Mapping</span>
+        <span class="tool-tag">Stakeholder Management</span>
+        <span class="tool-tag">Traceability Matrix</span>
+      </div>
+    </div>
+
+    <!-- JOB 2 -->
+    <div class="timeline-item">
+      <p class="timeline-date">December 2021 – September 2024</p>
+      <p class="timeline-company">The BackRoom Offshore Inc.</p>
+      <p class="timeline-role">Quality Assurance Engineer</p>
+      <p class="timeline-addr">Clark Freeport Zone, Pampanga</p>
+      <ul class="resp-list">
+        <li>Undertake all system test related activities in support of business requirements for new and updated systems.</li>
+        <li>Attend meetings with business and technical representatives covering test-dependent activities such as requirement verification, prioritization, and test scenario identification.</li>
+        <li>Ensure test scenarios and scripts are prepared in a structured, prioritized manner reflecting business and technical priorities.</li>
+        <li>Create allocated test scripts, monitor test execution, and ensure results are accurately recorded.</li>
+      </ul>
+      <div class="tools-row">
+        <span class="tool-tag">HP QC</span>
+        <span class="tool-tag">CCB Testing</span>
+        <span class="tool-tag">RTW</span>
+        <span class="tool-tag">Clear Quest</span>
+        <span class="tool-tag">Lotus Notes</span>
+      </div>
+    </div>
+
+    <!-- JOB 2 -->
+    <div class="timeline-item">
+      <p class="timeline-date">September 2013 – December 2021</p>
+      <p class="timeline-company">IBM Solutions Delivery Philippines</p>
+      <p class="timeline-role">I.T Specialist</p>
+      <p class="timeline-addr">UP-Ayala Land Technohub, Quezon City, Philippines</p>
+      <ul class="resp-list">
+        <li>Ensure product testing is completed within guidelines and according to standards.</li>
+        <li>Created Test Scripts based on business requirements.</li>
+        <li>Analyze peer review metrics and provide improvement recommendations.</li>
+        <li>Perform System Testing: Component Integration Testing and System Integration Testing.</li>
+        <li>Log and monitor defects through to closure; create tickets via SCCD tool.</li>
+        <li>Mobile automation testing via Rational Test Workbench (RTW).</li>
+        <li>Experience in ORACLE CCB testing.</li>
+      </ul>
+      <div class="tools-row">
+        <span class="tool-tag">RTW</span>
+        <span class="tool-tag">SCCD</span>
+        <span class="tool-tag">ORACLE CCB</span>
+        <span class="tool-tag">Manual Testing</span>
+      </div>
+    </div>
+
+    <!-- JOB 3 -->
+    <div class="timeline-item">
+      <p class="timeline-date">May 2011 – April 2012</p>
+      <p class="timeline-company">Verinon Technology Solutions Sdn BHD</p>
+      <p class="timeline-role">Senior Test Analyst — Standard Chartered Bank</p>
+      <p class="timeline-addr">Plaza Sentral, Jalan Stesen Sentral 5, Kuala Lumpur, Malaysia</p>
+      <ul class="resp-list">
+        <li>Plan testing run schedules per assigned timeline; ensure all prerequisites (test plan, spec, cases, data, environment) are in place before execution.</li>
+        <li>Execute assigned test cases within allocated time using specified tools and standards.</li>
+        <li>Manage test risk, issues, communications, and status reporting to leads and management.</li>
+      </ul>
+      <div class="tools-row">
+        <span class="tool-tag">Test Planning</span>
+        <span class="tool-tag">Defect Tracking</span>
+        <span class="tool-tag">Status Reporting</span>
+      </div>
+    </div>
+
+    <!-- JOB 4 -->
+    <div class="timeline-item">
+      <p class="timeline-date">February 2009 – April 2011</p>
+      <p class="timeline-company">Tech System InfoSource Inc.</p>
+      <p class="timeline-role">Test Engineer</p>
+      <p class="timeline-addr">CV Starr Ave, Pamplona Dos, Las Piñas City</p>
+      <ul class="resp-list">
+        <li>Create test specifications based on product requirements.</li>
+        <li>Perform software quality assurance testing across maintenance, inventory management, and procurement systems.</li>
+        <li>Provide testing support to Philippine and overseas client sites.</li>
+        <li>Maintain and update technical documentation.</li>
+      </ul>
+    </div>
+
+    <!-- JOB 5 -->
+    <div class="timeline-item">
+      <p class="timeline-date">February 2006 – November 2008</p>
+      <p class="timeline-company">UNITEX INC.</p>
+      <p class="timeline-role">Software Engineer</p>
+      <p class="timeline-addr">A.C. Raftel Center, Dr. A. Santos Avenue, Sucat Road, Parañaque City</p>
+      <ul class="resp-list">
+        <li>Software design, simulation, test activities, and quality assurance management.</li>
+        <li>Product Testing, PCB check test, and product assembly.</li>
+        <li>Firmware Programming using the PSOC designer.</li>
+        <li>Overseas training for Software Development projects in Yokohama, Japan (March – April 2007).</li>
+      </ul>
+      <div class="tools-row">
+        <span class="tool-tag">PSOC Designer</span>
+        <span class="tool-tag">Firmware</span>
+        <span class="tool-tag">PCB Testing</span>
+      </div>
+    </div>
+
+    <!-- JOB 6 -->
+    <div class="timeline-item">
+      <p class="timeline-date">November 2003 – January 2006</p>
+      <p class="timeline-company">Nozomi Fortune Services / Berkeley System Management Inc.</p>
+      <p class="timeline-role">Technical Support Staff / System Test Project Lead</p>
+      <p class="timeline-addr">Lexmark Research Development Company, Cebu City, Philippines</p>
+      <ul class="resp-list">
+        <li>Lead the system development team for software driver testing.</li>
+        <li>Provide on-site support for the developer during printer driver solution testing.</li>
+        <li>Run test suites from an end-user perspective; document and report errors found.</li>
+        <li>Reproduce steps to elicit suspected errors when requested by developers.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <p class="section-label">Academic Background</p>
+  <h2 class="section-title">Education</h2>
+
+  <div class="edu-grid">
+    <div class="edu-card">
+      <p class="edu-level">College</p>
+      <p class="edu-school">University of San Jose-Recolletos</p>
+      <p class="edu-degree">Bachelor of Science in Computer Engineering</p>
+    </div>
+    <div class="edu-card">
+      <p class="edu-level">Secondary</p>
+      <p class="edu-school">Saint Alphonsus Catholic School</p>
+      <p class="edu-degree">Secondary Education</p>
+    </div>
+    <div class="edu-card">
+      <p class="edu-level">Elementary</p>
+      <p class="edu-school">Soong Elementary School</p>
+      <p class="edu-degree">Primary Education</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT — same as index.html -->
+<div class="idx-contact" id="contact">
+  <span class="idx-section-tag">Contact</span>
+  <h2 class="idx-section-title">Get In Touch</h2>
+  <p class="idx-section-subtitle">Open for QA projects, collaborations, and digital printing inquiries.</p>
+
+  <div class="idx-contact-grid">
+    <div class="idx-contact-info">
+      <p>Whether you need a seasoned QA tester for your project or a custom printed product, I'd love to hear from you. Reach out through any channel below.</p>
+      <div class="idx-social-links">
+        <a href="http://www.facebook.com/ariezz.augusto" class="idx-social-link" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook <span class="idx-social-link-arrow">ariezz.augusto →</span>
+        </a>
+        <a href="https://www.linkedin.com/in/aries-augusto" class="idx-social-link" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn <span class="idx-social-link-arrow">View Profile →</span>
+        </a>
+        <a href="mailto:ariezz.augusto@gmail.com" class="idx-social-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email Me <span class="idx-social-link-arrow">ariezz.augusto@gmail.com →</span>
+        </a>
+        <a href="https://m.me/ariezz.augusto" class="idx-social-link" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.3 2.246.464 3.443.464 6.627 0 12-4.974 12-11.111S18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8l3.131 3.259L19.752 8l-6.561 6.963z"/></svg>
+          Messenger <span class="idx-social-link-arrow">Message me directly →</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <form class="idx-contact-form" onsubmit="handleContactSubmit(event)">
+        <div class="idx-form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Enter your full name">
+        </div>
+        <div class="idx-form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@example.com">
+        </div>
+        <div class="idx-form-group">
+          <label>Subject</label>
+          <input type="text" placeholder="QA Project / Printing Inquiry / Other">
+        </div>
+        <div class="idx-form-group">
+          <label>Message</label>
+          <textarea rows="5" placeholder="Tell me about your project or inquiry..."></textarea>
+        </div>
+        <button type="submit" class="idx-send-btn">Send Message →</button>
+        <div id="contact-msg" style="display:none;text-align:center;font-size:0.82rem;color:#818cf8;margin-top:0.5rem;">✓ Message sent! I'll get back to you soon.</div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER — same as index.html -->
+<div class="idx-footer">
+  <p>© 2025 <a href="https://bugzlife.netlify.app">BugzLife</a> · Aries Augusto · Software QA & Digital Services</p>
+  <p>ISTQB Certified · 15+ Years in QA · 🇵🇭 Philippines</p>
+</div>
+
+<!-- FLOATING MESSENGER -->
+<a href="https://m.me/ariezz.augusto" target="_blank" class="fb-float" title="Message me on Messenger">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.3 2.246.464 3.443.464 6.627 0 12-4.974 12-11.111S18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8l3.131 3.259L19.752 8l-6.561 6.963z"/></svg>
+  <span class="fb-float-label">Chat with me</span>
+</a>
+
+<script>
+  // Intersection observer for bar fills
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.bar-fill').forEach(b => {
+          b.style.animation = 'none';
+          b.offsetHeight; // reflow
+          b.style.animation = '';
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.lang-grid').forEach(el => observer.observe(el));
+</script>
+
+<script>
+  function handleContactSubmit(e) {
+    e.preventDefault();
+    const msg = document.getElementById('contact-msg');
+    msg.style.display = 'block';
+    e.target.reset();
+    setTimeout(() => { msg.style.display = 'none'; }, 4000);
+  }
+</script>
+</body>
+</html>

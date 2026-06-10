@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mt. Sembrano: A Hike for a Cause | BugzLife</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#13151a;--bg2:#1c1f27;--bg3:#242831;
+    --accent:#818cf8;--accent2:#6366f1;--accent3:#a5b4fc;
+    --accent-dim:rgba(129,140,248,0.1);--accent-border:rgba(129,140,248,0.25);
+    --text:#eef0f6;--text2:#9399a6;--text3:#5a6072;
+    --border:rgba(255,255,255,0.07);
+    --font:'Outfit',sans-serif;--serif:'Lora',serif;
+  }
+  body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;background:rgba(19,21,26,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+  .nav-logo{font-size:1.05rem;font-weight:700;color:var(--text);text-decoration:none}
+  .nav-logo span{color:var(--accent)}
+  .nav-back{display:inline-flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--text2);text-decoration:none;transition:color 0.2s}
+  .nav-back:hover{color:var(--accent3)}
+  .post-hero{position:relative;z-index:1;padding:6rem 2.5rem 0;max-width:800px;margin:0 auto}
+  .post-cat{display:inline-block;background:var(--accent2);color:#fff;font-size:0.7rem;font-weight:600;padding:3px 12px;border-radius:20px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1rem}
+  .post-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.2;letter-spacing:-0.02em;margin-bottom:1rem;color:var(--text)}
+  .post-meta{display:flex;align-items:center;gap:10px;font-size:0.8rem;color:var(--text3);margin-bottom:2rem;flex-wrap:wrap}
+  .post-cover{width:100%;border-radius:16px;overflow:hidden;aspect-ratio:16/7}
+  .post-cover img{width:100%;height:100%;object-fit:cover;display:block}
+  .post-body{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:3rem 2.5rem 6rem}
+  .post-body p{color:var(--text2);font-size:1rem;line-height:1.9;font-weight:300;margin-bottom:1.5rem}
+  .post-body h3,.post-body h4{font-size:1.2rem;font-weight:700;color:var(--text);margin:2.5rem 0 1rem;line-height:1.3}
+  .post-body h4{font-size:1rem}
+  .post-body strong{color:var(--text);font-weight:600}
+  .post-body em{font-style:italic;color:var(--text2)}
+  .post-body blockquote{border-left:3px solid var(--accent2);padding:1rem 1.5rem;margin:2rem 0;background:var(--bg2);border-radius:0 10px 10px 0;font-family:var(--serif);font-style:italic;color:var(--text2)}
+  .post-body ul,.post-body ol{margin:1rem 0 1.5rem 1.5rem;color:var(--text2)}
+  .post-body li{margin-bottom:0.5rem;font-size:0.97rem;line-height:1.8;font-weight:300}
+  .post-body .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin:2rem 0}
+  .post-body .photo-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block}
+  .post-body .photo-wide{width:100%;border-radius:12px;margin:2rem 0;display:block;border:1px solid var(--border)}
+  .post-body video{width:100%;border-radius:12px;margin:2rem 0;display:block}
+  .post-body .itinerary-box{background:var(--bg2);border:1px solid var(--accent-border);border-radius:12px;padding:1.5rem;margin:2rem 0;font-size:0.88rem;color:var(--text2);line-height:2}
+  .post-body .itinerary-box strong{color:var(--accent3)}
+  .back-btn{display:inline-flex;align-items:center;gap:8px;padding:0.65rem 1.25rem;border:1px solid var(--border);border-radius:8px;color:var(--text2);font-size:0.85rem;font-weight:500;text-decoration:none;transition:all 0.2s;margin-bottom:3rem}
+  .back-btn:hover{border-color:var(--accent-border);color:var(--accent3)}
+  .related{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2.5rem}
+  .related-inner{max-width:800px;margin:0 auto}
+  .related h3{font-size:0.78rem;font-weight:600;color:var(--text2);margin-bottom:1.5rem;letter-spacing:0.05em;text-transform:uppercase}
+  .related-links{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .related-link{display:flex;align-items:center;gap:12px;padding:1rem;background:var(--bg3);border:1px solid var(--border);border-radius:10px;text-decoration:none;transition:all 0.2s}
+  .related-link:hover{border-color:var(--accent-border);transform:translateY(-1px)}
+  .related-link img{width:60px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0}
+  .rl-cat{font-size:0.65rem;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px}
+  .rl-title{font-size:0.85rem;font-weight:600;color:var(--text);line-height:1.3}
+  footer{text-align:center;padding:2rem;font-size:0.8rem;color:var(--text3);border-top:1px solid var(--border)}
+  footer a{color:var(--accent3);text-decoration:none}
+  @media(max-width:768px){
+    .post-hero,.post-body{padding-left:1.25rem;padding-right:1.25rem}
+    .related{padding:2rem 1.25rem}
+    .related-links{grid-template-columns:1fr}
+    .post-body .photo-grid{grid-template-columns:repeat(2,1fr)}
+    nav{padding:0 1.25rem}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Bugz<span>Life</span></a>
+  <a href="index.html#blog" class="nav-back">← Back to Blog</a>
+</nav>
+
+<div class="post-hero">
+  <div class="post-cat">Adventure</div>
+  <h1 class="post-title">Mt. Sembrano: A Hike for a Cause (sidetrip to Pililla Windmill Farm)</h1>
+  <div class="post-meta">
+    <span>✍️ Ariezz Augusto</span>
+    <span>·</span>
+    <span>📅 February 5, 2023</span>
+    <span>·</span>
+    <span>⏱ 4 min read</span>
+  </div>
+  <div class="post-cover">
+    <img src="https://static.wixstatic.com/media/4aff93_051d3365e219432a8f771aa0b9962f01~mv2.jpg/v1/fill/w_980,h_430,fp_0.50_0.50,q_90,enc_avif,quality_auto/4aff93_051d3365e219432a8f771aa0b9962f01~mv2.jpg" alt="Mt. Sembrano">
+  </div>
+</div>
+
+<div class="post-body">
+  <a href="index.html#blog" class="back-btn">← Back to all stories</a>
+
+  <p>Mt. Sembrano is located in Pililla, Rizal. It offers a scenic view of Laguna de Bay, Talim Island, and an awesome view of the plains and surrounding municipalities. Mt. Sembrano has an elevation of <strong>745 MASL or 2,444 feet</strong>. The mountain is situated between the boundaries of the towns of Jalajala, Pililla, and the town of Pakil in Laguna province — one of the nearest mountains outside Metro Manila.</p>
+
+  <h3>My Trip to Mt. Sembrano</h3>
+
+  <p>It's 2023 already and my last hiking experience was in January of the previous year at Mt. Balingkilat. I was longing for a new adventure. I had several plans — Sagada, Mt. Ulap, or Mapanuepe lake in Zambales — but the plans did not push through as one of my travel buddies, Mike, had a health issue.</p>
+
+  <p>When Ms. Marje, one of the event organizers, invited me to join a <strong>Hiking for a Cause</strong> in Rizal Province, I was hesitant at first since Mike and Mam Hides would not be able to join. But Ms. Marje convinced me because the proceeds of the hike would help one of the less privileged people — <em>Nanay Odette</em>.</p>
+
+  <div class="photo-grid">
+    <img src="https://static.wixstatic.com/media/4aff93_ca59780161dd407eb91f5149f70db7f8~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_ca59780161dd407eb91f5149f70db7f8~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_20ffc6738f9d45f7a918f9234c6c3987~mv2.jpg/v1/fill/w_324,h_323,fp_0.50_0.50,q_90/4aff93_20ffc6738f9d45f7a918f9234c6c3987~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_2f9ac3bdad784479b231a6abd4049da7~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_2f9ac3bdad784479b231a6abd4049da7~mv2.jpg" alt="">
+  </div>
+
+  <div class="itinerary-box">
+    <strong>🗓 MT. SEMBRANO — Hike for a Cause ❤️</strong><br>
+    ₱1,499 — all proceeds to Nanay Odette's house renovation<br><br>
+    <strong>Inclusions:</strong> Van transport (vice versa), Registration fee, Environmental fee, Guide fee, Coordinator<br><br>
+    <strong>February 5, 2023 Itinerary:</strong><br>
+    0100 — Pick up KIA McDonald (Cubao), Departure to Pililla, Rizal<br>
+    0430 — ETA Brgy. Malaya (JOP), Register, Secure Guide<br>
+    0500 — Start Trek<br>
+    0700 — ETA Manggahan (quick breakfast)<br>
+    0830 — ETA North Peak<br>
+    0900 — ETA South Peak (summit) photo ops<br>
+    0930 — Start Descent<br>
+    1030 — ETA Manggahan Falls<br>
+    1130 — Back to JOP. Lunch, Tidy up<br>
+    1300 — ETD Brgy Malaya going to Pililla Windmill<br>
+    1400 — ETA Pililla Windmill (photo ops)<br>
+    1530 — ETD Windmill back to Manila<br>
+    2000 — ETA Manila
+  </div>
+
+  <video controls>
+    <source src="https://video.wixstatic.com/video/4aff93_8b534ae7dd6d47439d5bce2c837d8936/480p/mp4/file.mp4" type="video/mp4">
+  </video>
+
+  <p>We arrived at the jump-off point around 4 am and waited at the Barangay Hall for our guide. After a group prayer, we started the hike around 5:00 AM. The initial trail is on the road, passing by local houses that lead to a rocky path.</p>
+
+  <div class="photo-grid">
+    <img src="https://static.wixstatic.com/media/4aff93_b801560521084a93a140cbf92b3d1d89~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_b801560521084a93a140cbf92b3d1d89~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_e0da454e927f4192be80d2ad828df943~mv2.jpg/v1/fill/w_324,h_323,fp_0.50_0.50,q_90/4aff93_e0da454e927f4192be80d2ad828df943~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_c74cfa70110e498993f09c88c3472977~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_c74cfa70110e498993f09c88c3472977~mv2.jpg" alt="">
+  </div>
+
+  <p>After one hour, we reached the Manggahan campsite and rested on bamboo benches while drinking fresh coconut juice. We continued on a 45-degree assault with bigger rocks, shrubs, and tall trees in a moderately steep trail.</p>
+
+  <h3>Reaching the Summit</h3>
+
+  <p>After more than 3 hours of hiking, we reached the North Peak — covered by cogon grasses. The view was amazing: Laguna de Bay below and the Sierra Madre mountain range in the distance.</p>
+
+  <div class="photo-grid">
+    <img src="https://static.wixstatic.com/media/4aff93_136d320ab1c74ab2bf407efbe04f46a0~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_136d320ab1c74ab2bf407efbe04f46a0~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_6a82f5ab5e4f496dbe5828e2fc05d183~mv2.jpg/v1/fill/w_324,h_323,fp_0.50_0.50,q_90/4aff93_6a82f5ab5e4f496dbe5828e2fc05d183~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_af920289a07e4a5ca2a7d1998be77149~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_af920289a07e4a5ca2a7d1998be77149~mv2.jpg" alt="">
+  </div>
+
+  <div class="photo-grid">
+    <img src="https://static.wixstatic.com/media/4aff93_fe78114312e140079fe8b34a97ed91e9~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_fe78114312e140079fe8b34a97ed91e9~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_f99c6c4344144df48772683cfc8d45d6~mv2.jpg/v1/fill/w_324,h_323,fp_0.50_0.50,q_90/4aff93_f99c6c4344144df48772683cfc8d45d6~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_00b95a93f21044168d6bddca4abca4de~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_00b95a93f21044168d6bddca4abca4de~mv2.jpg" alt="">
+  </div>
+
+  <p>We experienced 3 types of weather at the top — sunny, windy, and rainy. I also met Brownie, the adorable tour guide dog who knew the path very well!</p>
+
+  <h3>Meeting the Gigantic Pililla Windmill</h3>
+
+  <p>There is no entrance fee at Pililla Wind Farm. We arrived around 11 AM. The towering windmills are really huge and a marvelous sight to see.</p>
+
+  <div class="photo-grid">
+    <img src="https://static.wixstatic.com/media/4aff93_56ba155ca7ba4247813c8d205b332954~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_56ba155ca7ba4247813c8d205b332954~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_ce030ffe45494af2ac6e028a70e32fa9~mv2.jpg/v1/fill/w_324,h_323,fp_0.50_0.50,q_90/4aff93_ce030ffe45494af2ac6e028a70e32fa9~mv2.jpg" alt="">
+    <img src="https://static.wixstatic.com/media/4aff93_eda01de4d1f54bcea0f9ba6b37be22e0~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/4aff93_eda01de4d1f54bcea0f9ba6b37be22e0~mv2.jpg" alt="">
+  </div>
+
+  <p>We had a stopover lunch at <strong>Rambulls bakahan sa Tanay</strong> — the food was really delicious with unlimited soup of their famous bulalo.</p>
+
+  <p>My overall experience was great and fun — with some really great people you encounter during the adventure. Rizal province has so many exciting places to offer. If you're looking for a great adventure, just visit the place!</p>
+
+  <blockquote>As what Jhong Hilario said: "The only impossible journey is the one that you never begin." You decide — <strong>One day or Day one.</strong></blockquote>
+
+  <video controls>
+    <source src="https://video.wixstatic.com/video/4aff93_a95643bba9b5498a9b6432774251b97e/480p/mp4/file.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="related">
+  <div class="related-inner">
+    <h3>More Stories</h3>
+    <div class="related-links">
+      <a href="blog-anencephaly.html" class="related-link">
+        <img src="https://static.wixstatic.com/media/4aff93_93a48e3b12474185ab09f598f892a423~mv2.jpg/v1/fill/w_200,h_200,fp_0.50_0.50,q_85/4aff93_93a48e3b12474185ab09f598f892a423~mv2.jpg" alt="">
+        <div>
+          <div class="rl-cat">Personal</div>
+          <div class="rl-title">Our Journey of Love: With an Anencephaly Baby.</div>
+        </div>
+      </a>
+      <a href="blog-baguio.html" class="related-link">
+        <img src="https://static.wixstatic.com/media/4aff93_ffc9db92c36a478992fcbb0950b8b40b~mv2.jpg/v1/fill/w_200,h_200,fp_0.50_0.50,q_85/4aff93_ffc9db92c36a478992fcbb0950b8b40b~mv2.jpg" alt="">
+        <div>
+          <div class="rl-cat">Travel</div>
+          <div class="rl-title">DIY TRIP TO BAGUIO 2023</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 <a href="index.html">BugzLife</a> · Ariezz Augusto</p>
+</footer>
+
+</body>
+</html>
