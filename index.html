@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bugzlife - Aries Augusto | QA Tester & Digital Services</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#0a0a0f;--bg2:#111118;--bg3:#16161f;--bg4:#1c1c28;
+    --accent:#7c6fff;--accent2:#a78bfa;--green:#22d3a0;--pink:#f472b6;
+    --text:#e2e8f0;--muted:#94a3b8;--border:#ffffff18;
+    --card:#ffffff08;--card-hover:#ffffff12;
+    --radius:14px;--radius-sm:8px;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);background:#0a0a0fcc;border-bottom:1px solid var(--border);padding:0 2rem}
+  .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+  .logo{font-weight:700;font-size:1.2rem;color:var(--accent2);text-decoration:none;letter-spacing:.5px}
+  .logo span{color:var(--green)}
+  .nav-links{display:flex;gap:.25rem;list-style:none}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;padding:.4rem .7rem;border-radius:var(--radius-sm);transition:.2s}
+  .nav-links a:hover{color:var(--text);background:var(--card)}
+  .nav-cta{background:var(--accent);color:#fff;padding:.4rem 1rem;border-radius:var(--radius-sm);font-size:.85rem;text-decoration:none;transition:.2s}
+  .nav-cta:hover{background:var(--accent2)}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--muted);border-radius:2px;transition:.3s}
+  .mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:#111118f5;backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:1rem 2rem;z-index:99}
+  .mobile-menu.open{display:block}
+  .mobile-menu a{display:block;color:var(--muted);text-decoration:none;padding:.6rem 0;border-bottom:1px solid var(--border);font-size:.9rem}
+  .mobile-menu a:hover{color:var(--text)}
+
+  /* SECTIONS */
+  section{padding:5rem 2rem}
+  .container{max-width:1100px;margin:0 auto}
+  .section-label{font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:.5rem}
+  .section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;margin-bottom:1rem;line-height:1.2}
+  .section-sub{color:var(--muted);max-width:560px;margin-bottom:3rem}
+
+  /* HERO */
+  #home{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:5rem}
+  .hero-bg{position:absolute;inset:0;pointer-events:none}
+  .hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.25}
+  .orb1{width:500px;height:500px;background:var(--accent);top:-100px;left:-100px}
+  .orb2{width:400px;height:400px;background:var(--green);bottom:-80px;right:-80px}
+  .hero-content{position:relative;z-index:1;max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+  .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--card);border:1px solid var(--border);border-radius:30px;padding:.4rem 1rem;font-size:.8rem;color:var(--muted);margin-bottom:1.5rem}
+  .badge-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .hero-title{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;line-height:1.1;margin-bottom:1.2rem}
+  .hero-title .line2{color:var(--accent2)}
+  .hero-title .line3{color:var(--green)}
+  .hero-desc{color:var(--muted);font-size:1.05rem;margin-bottom:2rem;line-height:1.7}
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+  .btn-primary{background:var(--accent);color:#fff;padding:.7rem 1.6rem;border-radius:var(--radius-sm);text-decoration:none;font-weight:600;font-size:.9rem;transition:.2s;display:inline-flex;align-items:center;gap:.5rem}
+  .btn-primary:hover{background:var(--accent2);transform:translateY(-2px)}
+  .btn-outline{border:1px solid var(--border);color:var(--text);padding:.7rem 1.6rem;border-radius:var(--radius-sm);text-decoration:none;font-size:.9rem;transition:.2s;display:inline-flex;align-items:center;gap:.5rem}
+  .btn-outline:hover{background:var(--card);border-color:var(--accent)}
+  .hero-stats{display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap}
+  .stat{border-left:3px solid var(--accent);padding-left:1rem}
+  .stat-num{font-size:1.8rem;font-weight:800;color:var(--text);line-height:1}
+  .stat-label{font-size:.75rem;color:var(--muted);margin-top:.2rem}
+  .hero-visual{position:relative}
+  .hero-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem}
+  .profile-img{width:100%;height:260px;object-fit:cover;border-radius:var(--radius-sm);margin-bottom:1rem}
+  .profile-name{font-weight:700;font-size:1.1rem}
+  .profile-role{color:var(--accent2);font-size:.85rem}
+  .floating-badge{position:absolute;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.5rem 1rem;font-size:.8rem;white-space:nowrap}
+  .fb1{top:-15px;right:-10px;color:var(--green)}
+  .fb2{bottom:70px;left:-20px;color:var(--accent2)}
+
+  /* ABOUT */
+  #about{background:var(--bg2)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+  .about-imgs{position:relative}
+  .about-img-main{width:100%;height:340px;object-fit:cover;border-radius:var(--radius)}
+  .about-img-thumb{position:absolute;bottom:-20px;right:-20px;width:160px;height:120px;object-fit:cover;border-radius:var(--radius-sm);border:4px solid var(--bg2)}
+  .quote-block{background:var(--bg3);border-left:3px solid var(--accent);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:1rem 1.25rem;margin:1.5rem 0;font-style:italic;color:var(--muted);font-size:.9rem}
+  .timeline{margin-top:2rem}
+  .tl-item{display:flex;gap:1rem;margin-bottom:1.5rem}
+  .tl-dot{width:12px;height:12px;border-radius:50%;background:var(--accent);margin-top:.3rem;flex-shrink:0}
+  .tl-line{width:2px;background:var(--border);margin:0 auto}
+  .tl-marker{display:flex;flex-direction:column;align-items:center}
+  .tl-year{font-size:.75rem;color:var(--accent);font-weight:700}
+  .tl-text{font-size:.9rem;color:var(--text)}
+  .tl-sub{font-size:.8rem;color:var(--muted)}
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+  .skill-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;transition:.3s}
+  .skill-card:hover{background:var(--card-hover);border-color:var(--accent);transform:translateY(-2px)}
+  .skill-header{display:flex;justify-content:space-between;margin-bottom:.6rem;font-size:.9rem}
+  .skill-name{color:var(--text)}
+  .skill-pct{color:var(--accent2);font-weight:600}
+  .skill-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+  .skill-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width 1.2s ease}
+  .skill-type{font-size:.7rem;color:var(--muted);margin-top:.4rem}
+
+  /* SERVICES */
+  #services{background:var(--bg2)}
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+  .service-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;transition:.3s;position:relative;overflow:hidden}
+  .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--green));opacity:0;transition:.3s}
+  .service-card:hover{background:var(--card-hover);transform:translateY(-4px)}
+  .service-card:hover::before{opacity:1}
+  .service-icon{font-size:2rem;margin-bottom:1rem}
+  .service-title{font-size:1.05rem;font-weight:700;margin-bottom:.5rem}
+  .service-desc{color:var(--muted);font-size:.88rem;line-height:1.6}
+  .service-link{display:inline-flex;align-items:center;gap:.3rem;color:var(--accent2);text-decoration:none;font-size:.85rem;margin-top:1rem;transition:.2s}
+  .service-link:hover{gap:.6rem}
+
+  /* AI SECTION */
+  #ai-creations{background:var(--bg)}
+  .ai-header{display:flex;align-items:center;gap:1rem;margin-bottom:.5rem}
+  .ai-badge{background:#7c6fff22;border:1px solid var(--accent);color:var(--accent2);font-size:.75rem;padding:.25rem .75rem;border-radius:20px}
+  .ai-tools{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem}
+  .tool-tag{background:var(--card);border:1px solid var(--border);color:var(--muted);font-size:.75rem;padding:.3rem .8rem;border-radius:20px;cursor:pointer;transition:.2s}
+  .tool-tag:hover,.tool-tag.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .ai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+  .ai-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:.3s;cursor:pointer}
+  .ai-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+  .ai-thumb{width:100%;height:200px;object-fit:cover;display:block;background:var(--bg4)}
+  .ai-thumb-placeholder{width:100%;height:200px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--bg4),var(--bg3));position:relative;overflow:hidden}
+  .ai-thumb-placeholder::before{content:'';position:absolute;inset:-50%;background:conic-gradient(from 0deg,transparent,var(--accent)22,transparent 60%);animation:spin 4s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .ai-thumb-inner{position:relative;z-index:1;text-align:center}
+  .ai-thumb-inner .ai-emoji{font-size:2.5rem;display:block;margin-bottom:.5rem}
+  .ai-thumb-inner span{font-size:.75rem;color:var(--muted)}
+  .ai-info{padding:1rem}
+  .ai-title{font-weight:600;font-size:.95rem;margin-bottom:.4rem}
+  .ai-meta{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+  .ai-tag{background:var(--accent)22;color:var(--accent2);font-size:.7rem;padding:.15rem .6rem;border-radius:10px}
+  .ai-type-video{background:var(--pink)22;color:var(--pink)}
+  .ai-cta{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;text-align:center;margin-top:2rem}
+  .ai-cta h3{font-size:1.1rem;margin-bottom:.5rem}
+  .ai-cta p{color:var(--muted);font-size:.88rem;margin-bottom:1.25rem}
+
+  /* VIDEO MODAL */
+  .video-modal{display:none;position:fixed;inset:0;background:#000000ee;z-index:1000;align-items:center;justify-content:center;padding:1rem}
+  .video-modal.open{display:flex}
+  .video-modal-inner{position:relative;max-width:900px;width:100%}
+  .video-modal video{width:100%;border-radius:var(--radius);display:block}
+  .video-modal-close{position:absolute;top:-44px;right:0;background:var(--bg3);border:1px solid var(--border);color:var(--text);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center}
+  .ai-card-video{cursor:pointer;position:relative}
+  .ai-video-thumb{width:100%;height:200px;object-fit:cover;display:block;background:var(--bg4);position:relative;pointer-events:none}
+  .ai-video-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#00000055;transition:.3s;pointer-events:none}
+  .ai-video-play-btn{width:56px;height:56px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.4rem;transition:.3s}
+  .ai-card-video:hover .ai-video-play{background:#00000033}
+  .ai-card-video:hover .ai-video-play-btn{transform:scale(1.1);background:var(--accent2)}
+
+  /* GALLERY */
+  #gallery{background:var(--bg2)}
+  .gallery-tabs{display:flex;gap:.5rem;margin-bottom:2rem}
+  .gtab{background:var(--card);border:1px solid var(--border);color:var(--muted);font-size:.85rem;padding:.45rem 1.1rem;border-radius:var(--radius-sm);cursor:pointer;transition:.2s;border:none}
+  .gtab:hover{color:var(--text)}
+  .gtab.active{background:var(--accent);color:#fff}
+  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+  .gallery-item{border-radius:var(--radius-sm);overflow:hidden;position:relative;cursor:pointer;aspect-ratio:4/3}
+  .gallery-item img{width:100%;height:100%;object-fit:cover;transition:.4s}
+  .gallery-item:hover img{transform:scale(1.06)}
+  .gallery-overlay{position:absolute;inset:0;background:#00000088;opacity:0;transition:.3s;display:flex;align-items:flex-end;padding:.75rem}
+  .gallery-item:hover .gallery-overlay{opacity:1}
+  .gallery-caption{color:#fff;font-size:.8rem;font-weight:600}
+
+  /* BLOG */
+  .blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+  .blog-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);transition:.3s;text-decoration:none;display:block;overflow:hidden}
+  .blog-card:hover{background:var(--card-hover);border-color:var(--accent);transform:translateY(-3px)}
+  .blog-thumb{width:100%;height:180px;object-fit:cover;display:block;transition:.4s}
+  .blog-card:hover .blog-thumb{transform:scale(1.04)}
+  .blog-thumb-placeholder{width:100%;height:180px;display:flex;align-items:center;justify-content:center;font-size:2.5rem}
+  .blog-body{padding:1.25rem 1.75rem 1.75rem}
+  .blog-cat{display:inline-block;font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--accent2);margin-bottom:.75rem}
+  .blog-title{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.5rem;line-height:1.4}
+  .blog-excerpt{color:var(--muted);font-size:.85rem;line-height:1.6;margin-bottom:1rem}
+  .blog-meta{display:flex;align-items:center;gap:.5rem;font-size:.75rem;color:var(--muted)}
+  .blog-meta-dot{width:3px;height:3px;border-radius:50%;background:var(--muted)}
+
+  /* CONTACT */
+  #contact{background:var(--bg2)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem}
+  .social-links{display:flex;flex-direction:column;gap:.75rem;margin-top:1.5rem}
+  .social-link{display:flex;align-items:center;gap:.75rem;color:var(--muted);text-decoration:none;padding:.75rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);transition:.2s;font-size:.9rem}
+  .social-link:hover{background:var(--card-hover);border-color:var(--accent);color:var(--text)}
+  .social-icon{font-size:1.2rem;width:24px;text-align:center}
+  .contact-form{display:flex;flex-direction:column;gap:1rem}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .form-group{display:flex;flex-direction:column;gap:.4rem}
+  .form-group label{font-size:.8rem;color:var(--muted)}
+  .form-group input,.form-group textarea{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:.7rem 1rem;border-radius:var(--radius-sm);font-size:.9rem;font-family:inherit;transition:.2s;outline:none}
+  .form-group input:focus,.form-group textarea:focus{border-color:var(--accent)}
+  .form-group textarea{resize:vertical;min-height:120px}
+  .submit-btn{background:var(--accent);color:#fff;border:none;padding:.8rem 2rem;border-radius:var(--radius-sm);font-size:.95rem;font-weight:600;cursor:pointer;transition:.2s;width:fit-content}
+  .submit-btn:hover{background:var(--accent2);transform:translateY(-2px)}
+  .form-success{background:#22d3a022;border:1px solid var(--green);color:var(--green);padding:.75rem 1rem;border-radius:var(--radius-sm);font-size:.88rem;display:none}
+
+  /* FOOTER */
+  footer{background:var(--bg);border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--muted);font-size:.85rem}
+  footer a{color:var(--accent2);text-decoration:none}
+
+  /* LIGHTBOX */
+  .lightbox{display:none;position:fixed;inset:0;background:#000000ee;z-index:1000;align-items:center;justify-content:center;padding:1rem}
+  .lightbox.open{display:flex}
+  .lb-img{max-width:90vw;max-height:85vh;border-radius:var(--radius);object-fit:contain}
+  .lb-close{position:absolute;top:1.5rem;right:1.5rem;background:var(--bg3);border:1px solid var(--border);color:var(--text);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center}
+  .lb-caption{position:absolute;bottom:2rem;color:#fff;font-size:.9rem;background:#00000088;padding:.5rem 1rem;border-radius:var(--radius-sm)}
+
+  /* SCROLL REVEAL */
+  .reveal{opacity:0;transform:translateY(24px);transition:.7s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  @media(max-width:768px){
+    .hamburger{display:flex}
+    .nav-links,.nav-cta{display:none}
+    .hero-content,.about-grid,.contact-grid{grid-template-columns:1fr}
+    .hero-visual{display:none}
+    .form-row{grid-template-columns:1fr}
+    section{padding:3.5rem 1.25rem}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="logo">Bugz<span>life</span> <span style="color:var(--muted);font-weight:400;font-size:.95rem">- Aries Augusto</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#ai-creations">AI Creations</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#blog">Blog</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get In Touch</a>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#skills" onclick="toggleMenu()">Skills</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#ai-creations" onclick="toggleMenu()">AI Creations</a>
+  <a href="#gallery" onclick="toggleMenu()">Gallery</a>
+  <a href="#blog" onclick="toggleMenu()">Blog</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg">
+    <div class="hero-orb orb1"></div>
+    <div class="hero-orb orb2"></div>
+  </div>
+  <div class="hero-content container">
+    <div>
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        Available for QA projects
+      </div>
+      <h1 class="hero-title">
+        The Art of<br>
+        <span class="line2">Finding Bugs.</span><br>
+        <span class="line3">Crafting Quality.</span>
+      </h1>
+      <p class="hero-desc">ISTQB Certified Software QA Tester with 15+ years of experience. Also delivering digital printing, custom t-shirt design, website services, and AI-generated creative content.</p>
+      <div class="hero-btns">
+        <a href="#about" class="btn-primary">Explore My World →</a>
+        <a href="https://bugzlife.netlify.app/resume" class="btn-outline" target="_blank">📄 View Resume</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Years Experience</div></div>
+        <div class="stat"><div class="stat-num">ISTQB</div><div class="stat-label">Certified Tester</div></div>
+        <div class="stat"><div class="stat-num">PH</div><div class="stat-label">🇵🇭 Philippines</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div style="position:relative">
+        <div class="hero-card">
+          <img src="https://static.wixstatic.com/media/4aff93_26a0b6fd812144659a1866f366da10de~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/4aff93_26a0b6fd812144659a1866f366da10de~mv2.jpg" alt="Aries Augusto" class="profile-img">
+          <div class="profile-name">Aries Augusto</div>
+          <div class="profile-role">QA Engineer · ISTQB Certified</div>
+        </div>
+        <div class="floating-badge fb1">✅ Bug-Free Delivery</div>
+        <div class="floating-badge fb2">🤖 AI Creator</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid reveal">
+      <div class="about-imgs">
+        <img src="https://bugzlife.netlify.app/bukid.jpg" alt="Sunset road" class="about-img-main">
+        <img src="https://bugzlife.netlify.app/kape.jpg" alt="Kape sa bukid" class="about-img-thumb">
+      </div>
+      <div>
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">My Story</h2>
+        <div class="quote-block">"In the realm of software testing, being a skilled tester is more challenging than being a good developer." — John D. McGregor</div>
+        <p style="color:var(--muted);font-size:.92rem;line-height:1.8;margin-bottom:1rem">I'm <strong style="color:var(--text)">Aries Augusto</strong>, a Software Tester with more than 15 years of experience in manual testing and hands-on experience in automation and performance testing.</p>
+        <p style="color:var(--muted);font-size:.92rem;line-height:1.8">My expertise spans Black/White Box testing, System Testing, SIT, CCB Testing, POS and E-Commerce testing, Mobile testing, and Automation using UFT and Selenium. The name <strong style="color:var(--accent2)">BUGZ LIFE</strong> symbolizes my journey — discovering bugs, understanding systems, documenting them with precision.</p>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-marker"><div class="tl-dot" style="background:var(--green)"></div></div>
+            <div><div class="tl-year" style="color:var(--green)">Present</div><div class="tl-text">Freelance QA + Digital Services</div><div class="tl-sub">Automation, printing, AI creations</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-marker"><div class="tl-dot"></div></div>
+            <div><div class="tl-year">2025–present</div><div class="tl-text">GECO Asia Pte Ltd </div><div class="tl-sub">Business Analyst · Contract</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-marker"><div class="tl-dot"></div></div>
+            <div><div class="tl-year">2021–2024</div><div class="tl-text">The BackRoom Offshore Inc.</div><div class="tl-sub">Quality Assurance Engineer</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-marker"><div class="tl-dot"></div></div>
+            <div><div class="tl-year">2013–2021</div><div class="tl-text">IBM Solutions Delivery Philippines</div><div class="tl-sub">I.T Specialist</div></div>
+          </div>
+        </div>
+        <a href="https://bugzlife.netlify.app/resume" class="btn-primary" style="margin-top:1.5rem;width:fit-content" target="_blank">📄 Full Resume →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Expertise</div>
+      <h2 class="section-title">Skills & Capabilities</h2>
+      <p class="section-sub">A decade and a half of hands-on testing across manual, automation, and performance disciplines.</p>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-card"><div class="skill-header"><span class="skill-name">Black / White Box Testing</span><span class="skill-pct">98%</span></div><div class="skill-bar"><div class="skill-fill" data-pct="98"></div></div><div class="skill-type">Manual</div></div>
+      <div class="skill-card"><div class="skill-header"><span class="skill-name">System & SIT Testing</span><span class="skill-pct">95%</span></div><div class="skill-bar"><div class="skill-fill" data-pct="95"></div></div><div class="skill-type">Manual</div></div>
+      <div class="skill-card"><div class="skill-header"><span class="skill-name">POS & E-Commerce Testing</span><span class="skill-pct">93%</span></div><div class="skill-bar"><div class="skill-fill" data-pct="93"></div></div><div class="skill-type">Manual</div></div>
+      <div class="skill-card"><div class="skill-header"><span class="skill-name">Mobile Testing</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill" data-pct="90"></div></div><div class="skill-type">Manual</div></div>
+      <div class="skill-card"><div class="skill-header"><span class="skill-name">Selenium WebDriver</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill" data-pct="80"></div></div><div class="skill-type">Automation</div></div>
+      <div class="skill-card"><div class="skill-header"><span class="skill-name">UFT (Unified Functional Testing)</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill" data-pct="85"></div></div><div class="skill-type">Automation</div></div>
+      <div class="skill-card"><div class="skill-header"><span class="skill-name">Performance Testing</span><span class="skill-pct">78%</span></div><div class="skill-bar"><div class="skill-fill" data-pct="78"></div></div><div class="skill-type">Automation</div></div>
+      <div class="skill-card"><div class="skill-header"><span class="skill-name">Test Plan & Documentation</span><span class="skill-pct">97%</span></div><div class="skill-bar"><div class="skill-fill" data-pct="97"></div></div><div class="skill-type">Documentation</div></div>
+      <div class="skill-card"><div class="skill-header"><span class="skill-name">CCB Testing</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill" data-pct="88"></div></div><div class="skill-type">Manual</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">What I Offer</div>
+      <h2 class="section-title">Services</h2>
+      <p class="section-sub">Professional QA expertise alongside creative digital services.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card"><div class="service-icon">🐛</div><div class="service-title">Software QA Testing</div><div class="service-desc">Comprehensive manual and automated testing covering test planning, test case design, defect reporting, and QA throughout the SDLC.</div></div>
+      <div class="service-card"><div class="service-icon">🖨️</div><div class="service-title">Digital Printing</div><div class="service-desc">High-quality, affordable digital printing for individuals, organizations, and companies. Fast turnaround, short runs, on-demand.</div><a href="https://bugzlife.netlify.app/adp-printing" class="service-link" target="_blank">Visit Printing Site →</a></div>
+      <div class="service-card"><div class="service-icon">👕</div><div class="service-title">T-Shirt Design & Printing</div><div class="service-desc">Custom T-shirts, polo shirts, uniform sublimation, souvenirs, and personalized products. Your design or we create one for you.</div><a href="https://bugzlife.netlify.app/adp-printing" class="service-link" target="_blank">Order Now →</a></div>
+      <div class="service-card"><div class="service-icon">🌐</div><div class="service-title">Website Design</div><div class="service-desc">Affordable modern website design for businesses and personal sites. Clean, functional, great-looking, tailored to your goals.</div></div>
+      <div class="service-card"><div class="service-icon">📋</div><div class="service-title">Test Documentation</div><div class="service-desc">Professional writing of test plans, test cases, test scripts, and defect reports. Structured for QA process and audit compliance.</div></div>
+      <div class="service-card"><div class="service-icon">⚙️</div><div class="service-title">Test Automation Setup</div><div class="service-desc">Initial setup and scripting of automated test suites using Selenium or UFT. Helping teams transition to automated workflows.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI CREATIONS -->
+<section id="ai-creations">
+  <div class="container">
+    <div class="reveal">
+      <div class="ai-header">
+        <div class="section-label" style="margin-bottom:0">AI Creations</div>
+        <div class="ai-badge">✨ New Section</div>
+      </div>
+      <h2 class="section-title" style="margin-top:.5rem">AI Image & Video Generation</h2>
+      <p class="section-sub">Exploring the frontier of AI-generated visuals — from surreal landscapes to cinematic video clips, all crafted with leading AI tools.</p>
+      <div class="ai-tools">
+        <div class="tool-tag active" onclick="filterAI('all',this)">All</div>
+        <div class="tool-tag" onclick="filterAI('kling',this)">Kling AI ✨</div>
+        <div class="tool-tag" onclick="filterAI('pixverse',this)">PixVerse</div>
+      </div>
+    </div>
+    <div class="ai-grid reveal" id="aiGrid">
+
+      <!-- THE APOCALYPSE SERIES -->
+      <div class="ai-card ai-card-video" data-tool="kling" onclick="openAIVideoModal('The_Apocalypse_Series.mp4')">
+        <div style="position:relative">
+          <video class="ai-video-thumb" src="The_Apocalypse_Series.mp4" muted preload="metadata" style="height:200px;width:100%;object-fit:cover;display:block;" onloadedmetadata="this.currentTime=1"></video>
+          <div class="ai-video-play"><div class="ai-video-play-btn">▶</div></div>
+        </div>
+        <div class="ai-info">
+          <div class="ai-title">The Apocalypse Series</div>
+          <div class="ai-meta"><span class="ai-tag ai-type-video">Video</span><span class="ai-tag">Kling AI</span></div>
+        </div>
+      </div>
+
+      <!-- TWO CHILDREN HUGGING -->
+      <div class="ai-card ai-card-video" data-tool="kling" onclick="openAIVideoModal('Two_children_hugging_and_dancing_together_with_joyful_movements.mp4')">
+        <div style="position:relative">
+          <video class="ai-video-thumb" src="Two_children_hugging_and_dancing_together_with_joyful_movements.mp4" muted preload="metadata" style="height:200px;width:100%;object-fit:cover;display:block;" onloadedmetadata="this.currentTime=1"></video>
+          <div class="ai-video-play"><div class="ai-video-play-btn">▶</div></div>
+        </div>
+        <div class="ai-info">
+          <div class="ai-title">Children Dancing Together</div>
+          <div class="ai-meta"><span class="ai-tag ai-type-video">Video</span><span class="ai-tag">Kling AI</span></div>
+        </div>
+      </div>
+
+      <!-- BABY CRAWLING AND DANCING -->
+      <div class="ai-card ai-card-video" data-tool="kling" onclick="openAIVideoModal('Baby_crawling_and_dancing_with_playful_movements.mp4')">
+        <div style="position:relative">
+          <video class="ai-video-thumb" src="Baby_crawling_and_dancing_with_playful_movements.mp4" muted preload="metadata" style="height:200px;width:100%;object-fit:cover;display:block;" onloadedmetadata="this.currentTime=1"></video>
+          <div class="ai-video-play"><div class="ai-video-play-btn">▶</div></div>
+        </div>
+        <div class="ai-info">
+          <div class="ai-title">Baby Crawling & Dancing</div>
+          <div class="ai-meta"><span class="ai-tag ai-type-video">Video</span><span class="ai-tag">Kling AI</span></div>
+        </div>
+      </div>
+
+      <!-- AGING PROGRESSION ANIMATION -->
+      <div class="ai-card ai-card-video" data-tool="pixverse" onclick="openAIVideoModal('Animation_showing_smooth_transformation_and_aging_progression_from_child_to_adult__1_.mp4')">
+        <div style="position:relative">
+          <video class="ai-video-thumb" src="Animation_showing_smooth_transformation_and_aging_progression_from_child_to_adult__1_.mp4" muted preload="metadata" style="height:200px;width:100%;object-fit:cover;display:block;" onloadedmetadata="this.currentTime=1"></video>
+          <div class="ai-video-play"><div class="ai-video-play-btn">▶</div></div>
+        </div>
+        <div class="ai-info">
+          <div class="ai-title">Child to Adult Aging Animation</div>
+          <div class="ai-meta"><span class="ai-tag ai-type-video">Video</span><span class="ai-tag">PixVerse</span></div>
+        </div>
+      </div>
+
+      <!-- BABY CRAWLING DOWN CHAIR -->
+      <div class="ai-card ai-card-video" data-tool="kling" onclick="openAIVideoModal('Baby_crawling_down_from_red_chair__natural_crawling_movement.mp4')">
+        <div style="position:relative">
+          <video class="ai-video-thumb" src="Baby_crawling_down_from_red_chair__natural_crawling_movement.mp4" muted preload="metadata" style="height:200px;width:100%;object-fit:cover;display:block;" onloadedmetadata="this.currentTime=1"></video>
+          <div class="ai-video-play"><div class="ai-video-play-btn">▶</div></div>
+        </div>
+        <div class="ai-info">
+          <div class="ai-title">Baby Climbing Down Chair</div>
+          <div class="ai-meta"><span class="ai-tag ai-type-video">Video</span><span class="ai-tag">Kling AI</span></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="ai-cta reveal">
+      <h3>Want to see more or commission AI art?</h3>
+      <p>I create custom AI-generated images and video clips for personal or commercial use. Reach out via Facebook or Messenger.</p>
+      <a href="http://www.facebook.com/ariezz.augusto" class="btn-primary" target="_blank">💬 Message on Facebook →</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Gallery</div>
+      <h2 class="section-title">Life in Photos</h2>
+      <p class="section-sub">Adventures, workplaces, and memories — a visual record of my journey.</p>
+      <div class="gallery-tabs">
+        <button class="gtab active" onclick="switchTab('adventures',this)">Adventures</button>
+        <button class="gtab" onclick="switchTab('work',this)">Work Photos</button>
+      </div>
+    </div>
+    <div class="gallery-grid reveal" id="galleryGrid"></div>
+    <div style="text-align:center;margin-top:2rem">
+      <a href="https://bugzlife.netlify.app/gallery" class="btn-outline" target="_blank">View Full Gallery →</a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog" style="background:var(--bg)">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">My Stories</div>
+      <h2 class="section-title">Blog</h2>
+      <p class="section-sub">Adventures, life experiences, and personal journeys — written from the heart.</p>
+    </div>
+    <div class="blog-grid reveal">
+      <a href="https://bugzlife.netlify.app/blog-anencephaly" class="blog-card" target="_blank">
+        <img src="https://static.wixstatic.com/media/4aff93_620b10b582a245ddbbaa1e26a3ca240d~mv2.jpg/v1/fill/w_800,h_400,al_c,q_85,enc_avif,quality_auto/4aff93_620b10b582a245ddbbaa1e26a3ca240d~mv2.jpg" alt="Our Journey of Love" class="blog-thumb" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="blog-thumb-placeholder" style="display:none;background:linear-gradient(135deg,#1c1c28,#16161f)">💛</div>
+        <div class="blog-body">
+          <div class="blog-cat">Personal</div>
+          <div class="blog-title">Our Journey of Love: With an Anencephaly Baby</div>
+          <div class="blog-excerpt">May mga sandali sa buhay na muling humuhubog sa atin — mga sandali ng saya, lungkot, tapang, at di-masukat na pagmamahal...</div>
+          <div class="blog-meta"><span>Ariezz Augusto</span><div class="blog-meta-dot"></div><span>Feb 7, 2025</span><div class="blog-meta-dot"></div><span>4 min read</span></div>
+        </div>
+      </a>
+      <a href="https://bugzlife.netlify.app/blog-baguio" class="blog-card" target="_blank">
+        <img src="https://static.wixstatic.com/media/4aff93_ea8a2f033d194226bba251e98cc06b95~mv2.jpg/v1/fill/w_800,h_400,al_c,q_85,enc_avif,quality_auto/4aff93_ea8a2f033d194226bba251e98cc06b95~mv2.jpgv1" alt="DIY Trip to Baguio" class="blog-thumb" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="blog-thumb-placeholder" style="display:none;background:linear-gradient(135deg,#0a1628,#111f3a)">🏔️</div>
+        <div class="blog-body">
+          <div class="blog-cat">Travel</div>
+          <div class="blog-title">DIY Trip to Baguio 2023</div>
+          <div class="blog-excerpt">Baguio City is one of the most popular tourist destinations in the Philippines — cold weather, stunning views, and affordable food...</div>
+          <div class="blog-meta"><span>Ariezz Augusto</span><div class="blog-meta-dot"></div><span>Mar 1, 2023</span><div class="blog-meta-dot"></div><span>3 min read</span></div>
+        </div>
+      </a>
+      <a href="https://bugzlife.netlify.app/blog-sembrano" class="blog-card" target="_blank">
+        <img src="https://static.wixstatic.com/media/4aff93_136d320ab1c74ab2bf407efbe04f46a0~mv2.jpg/v1/fill/w_800,h_400,al_c,q_85,enc_avif,quality_auto/4aff93_136d320ab1c74ab2bf407efbe04f46a0~mv2.jpg" alt="Mt. Sembrano" class="blog-thumb" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="blog-thumb-placeholder" style="display:none;background:linear-gradient(135deg,#0d1f0d,#162516)">⛰️</div>
+        <div class="blog-body">
+          <div class="blog-cat">Adventure</div>
+          <div class="blog-title">Mt. Sembrano: A Hike for a Cause</div>
+          <div class="blog-excerpt">Mt. Sembrano offers a scenic view of Laguna de Bay and Talim Island. A hike with a cause — proceeds helped Nanay Odette's house renovation...</div>
+          <div class="blog-meta"><span>Ariezz Augusto</span><div class="blog-meta-dot"></div><span>Feb 5, 2023</span><div class="blog-meta-dot"></div><span>4 min read</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Let's Work Together</h2>
+      <p class="section-sub">Open for QA projects, collaborations, AI commissions, and digital printing inquiries.</p>
+    </div>
+    <div class="contact-grid reveal">
+      <div>
+        <p style="color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:1rem">Whether you need a seasoned QA tester for your project, custom AI-generated art, or a printed product — I'd love to hear from you.</p>
+        <div class="social-links">
+          <a href="http://www.facebook.com/ariezz.augusto" class="social-link" target="_blank"><span class="social-icon">📘</span><div><div style="font-size:.85rem;color:var(--text)">Facebook</div><div style="font-size:.75rem;color:var(--muted)">ariezz.augusto</div></div></a>
+          <a href="https://www.linkedin.com/in/aries-augusto" class="social-link" target="_blank"><span class="social-icon">💼</span><div><div style="font-size:.85rem;color:var(--text)">LinkedIn</div><div style="font-size:.75rem;color:var(--muted)">View Profile</div></div></a>
+          <a href="mailto:ariezz.augusto@gmail.com" class="social-link"><span class="social-icon">✉️</span><div><div style="font-size:.85rem;color:var(--text)">Email</div><div style="font-size:.75rem;color:var(--muted)">aries2004@gmail.com</div></div></a>
+          <a href="https://m.me/ariezz.augusto" class="social-link" target="_blank"><span class="social-icon">💬</span><div><div style="font-size:.85rem;color:var(--text)">Messenger</div><div style="font-size:.75rem;color:var(--muted)">Message me directly</div></div></a>
+        </div>
+      </div>
+      <div>
+        <div class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group"><label>Your Name</label><input type="text" id="fname" placeholder="Aries Augusto"></div>
+            <div class="form-group"><label>Email Address</label><input type="email" id="femail" placeholder="you@email.com"></div>
+          </div>
+          <div class="form-group"><label>Subject</label><input type="text" id="fsubject" placeholder="QA Project Inquiry"></div>
+          <div class="form-group"><label>Message</label><textarea id="fmessage" placeholder="Tell me about your project..."></textarea></div>
+          <button class="submit-btn" onclick="submitForm()">Send Message →</button>
+          <div class="form-success" id="formSuccess">✅ Message sent! I'll get back to you soon.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <a href="https://bugzlife.netlify.app">BugzLife</a> · Aries Augusto · Software QA & Digital Services</p>
+  <p style="margin-top:.4rem">ISTQB Certified · 15+ Years in QA · 🇵🇭 Philippines</p>
+</footer>
+
+<!-- VIDEO MODAL -->
+<div class="video-modal" id="videoModal" onclick="closeVideoModal(event)">
+  <div class="video-modal-inner" onclick="event.stopPropagation()">
+    <button class="video-modal-close" onclick="event.stopPropagation();closeVideoModal()">✕</button>
+    <video id="modalVideo" controls preload="none" style="width:100%;border-radius:14px;display:block;">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <div class="lb-caption" id="lbCaption"></div>
+</div>
+
+<script>
+const adventures=[
+  {src:'https://static.wixstatic.com/media/4aff93_10fe5f14db14404f92e83bc2289cff97~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/4aff93_10fe5f14db14404f92e83bc2289cff97~mv2.jpg',cap:'My Adventure'},
+  {src:'https://static.wixstatic.com/media/4aff93_8a43bd11923947469c05e02c47079b55~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/4aff93_8a43bd11923947469c05e02c47079b55~mv2.jpg',cap:'MT. Batulosong'},
+  {src:'https://static.wixstatic.com/media/4aff93_4c4cdc6198064a94956c6ad9a9243877~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/4aff93_4c4cdc6198064a94956c6ad9a9243877~mv2.jpg',cap:'Summit Selfie'},
+  {src:'https://static.wixstatic.com/media/4aff93_037bc398950c4f9a8cb70d5cb27beee2~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/4aff93_037bc398950c4f9a8cb70d5cb27beee2~mv2.jpg',cap:'Waiting for Sunrise'},
+  {src:'https://static.wixstatic.com/media/4aff93_3973d9c4135848a3b3c113f94b0f1455~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/4aff93_3973d9c4135848a3b3c113f94b0f1455~mv2.jpg',cap:'Island in Batangas'},
+  {src:'https://static.wixstatic.com/media/4aff93_2d0938ecb5f34107b9fe78c76313ddab~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/4aff93_2d0938ecb5f34107b9fe78c76313ddab~mv2.jpg',cap:'Sombrero Island'},
+  {src:'https://static.wixstatic.com/media/4aff93_051d3365e219432a8f771aa0b9962f01~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/4aff93_051d3365e219432a8f771aa0b9962f01~mv2.jpg',cap:'Mt. Sembrano Summit'},
+  {src:'https://bugzlife.netlify.app/bukid.jpg',cap:'Sunset Road'},
+  <!--{src:'https://bugzlife.netlify.app/kape.jpg',cap:'Kape sa Bukid'},-->
+];
+const work=[
+  {src:'https://static.wixstatic.com/media/4aff93_020c61cce2b86bf59fa4c56070023dc6.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/4aff93_020c61cce2b86bf59fa4c56070023dc6.jpg',cap:'Nozomi/Berkeley 2003–2006'},
+  {src:'https://static.wixstatic.com/media/4aff93_51442c9da83f46c0a69bf8d5f7096958~mv2.jpg/v1/fill/w_800,h_533,al_c,q_85,enc_avif,quality_auto/4aff93_51442c9da83f46c0a69bf8d5f7096958~mv2.jpg',cap:'Office Tour'},
+  {src:'https://static.wixstatic.com/media/4aff93_cce0bb2fc4e03b370ebc74824387ae1b.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/4aff93_cce0bb2fc4e03b370ebc74824387ae1b.jpg',cap:'Production Area'},
+  {src:'https://static.wixstatic.com/media/4aff93_ae36b7c2afb44fcd9e6920e0bab2cc2f~mv2.jpg/v1/fit/w_800,h_533,q_85,enc_avif,quality_auto/4aff93_ae36b7c2afb44fcd9e6920e0bab2cc2f~mv2.jpg',cap:'UNITEX INC. 2006–2008'},
+  {src:'https://static.wixstatic.com/media/4aff93_c10f1ea9daab4176a251feb4a62ea51b~mv2.jpg/v1/fill/w_800,h_533,al_c,q_85,enc_avif,quality_auto/4aff93_c10f1ea9daab4176a251feb4a62ea51b~mv2.jpg',cap:'Tech System InfoSource 2009–2011'},
+  {src:'https://static.wixstatic.com/media/4aff93_51ca46a60482413cb2337e82909993a8~mv2.jpg/v1/fill/w_800,h_533,al_c,q_85,enc_avif,quality_auto/4aff93_51ca46a60482413cb2337e82909993a8~mv2.jpg',cap:'At the Office'},
+];
+
+let curTab='adventures';
+function renderGallery(tab){
+  const g=document.getElementById('galleryGrid');
+  const data=tab==='adventures'?adventures:work;
+  g.innerHTML=data.map(i=>`<div class="gallery-item" onclick="openLightbox('${i.src}','${i.cap}')"><img src="${i.src}" alt="${i.cap}" loading="lazy"><div class="gallery-overlay"><div class="gallery-caption">${i.cap}</div></div></div>`).join('');
+}
+function switchTab(tab,el){
+  curTab=tab;
+  document.querySelectorAll('.gtab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  renderGallery(tab);
+}
+renderGallery('adventures');
+
+function openLightbox(src,cap){
+  document.getElementById('lbImg').src=src;
+  document.getElementById('lbCaption').textContent=cap;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open')}
+
+function openAIVideoModal(src){
+  const modal=document.getElementById('videoModal');
+  const v=document.getElementById('modalVideo');
+  v.src=src;
+  v.load();
+  modal.classList.add('open');
+  v.addEventListener('canplay', function handler(){
+    v.removeEventListener('canplay', handler);
+    v.play().catch(()=>{});
+  });
+}
+function openVideoModal(){openAIVideoModal('The_Apocalypse_Series.mp4');}
+function closeVideoModal(e){
+  if(e&&e.type==='click'){
+    const modal=document.getElementById('videoModal');
+    const closeBtn=document.querySelector('.video-modal-close');
+    if(e.target!==modal && e.target!==closeBtn) return;
+  }
+  document.getElementById('videoModal').classList.remove('open');
+  const v=document.getElementById('modalVideo');
+  v.pause();v.currentTime=0;v.removeAttribute('src');v.load();
+}
+
+function filterAI(tool,el){
+  document.querySelectorAll('.tool-tag').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.ai-card').forEach(c=>{
+    c.style.display=(tool==='all'||c.dataset.tool===tool)?'block':'none';
+  });
+}
+
+function submitForm(){
+  const n=document.getElementById('fname').value;
+  const e=document.getElementById('femail').value;
+  const s=document.getElementById('fsubject').value;
+  const m=document.getElementById('fmessage').value;
+  if(!n||!e||!s||!m){alert('Please fill in all fields.');return;}
+  document.getElementById('formSuccess').style.display='block';
+  document.getElementById('fname').value='';
+  document.getElementById('femail').value='';
+  document.getElementById('fsubject').value='';
+  document.getElementById('fmessage').value='';
+  setTimeout(()=>document.getElementById('formSuccess').style.display='none',4000);
+}
+
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Skill bar animation
+const skillObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.skill-fill').forEach(b=>{
+        b.style.width=b.dataset.pct+'%';
+      });
+    }
+  });
+},{threshold:.3});
+document.querySelectorAll('.skills-grid').forEach(el=>skillObs.observe(el));
+
+// ESC key closes modal
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeVideoModal();
+});
+</script>
+</body>
+</html>
