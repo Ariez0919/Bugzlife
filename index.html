@@ -142,7 +142,7 @@
   .video-modal{display:none;position:fixed;inset:0;background:#000000ee;z-index:1000;align-items:center;justify-content:center;padding:1rem}
   .video-modal.open{display:flex}
   .video-modal-inner{position:relative;max-width:900px;width:100%}
-  .video-modal video{width:100%;border-radius:var(--radius);display:block}
+  .video-modal iframe{width:100%;height:500px;border:none;border-radius:var(--radius);display:block}
   .video-modal-close{position:absolute;top:-44px;right:0;background:var(--bg3);border:1px solid var(--border);color:var(--text);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center}
   .ai-card-video{cursor:pointer;position:relative}
   .ai-video-thumb{width:100%;height:200px;object-fit:cover;display:block;background:var(--bg4);position:relative;pointer-events:none}
@@ -392,12 +392,11 @@
     <div class="ai-grid reveal" id="aiGrid">
 
       <!-- THE APOCALYPSE SERIES -->
-      <!-- THE APOCALYPSE SERIES -->
-<div class="ai-card ai-card-video" data-tool="kling"
+<div class="ai-card ai-card-video" data-tool="kling" 
   onclick="openAIVideoModal('https://drive.google.com/file/d/1HeH8DfI_dlff1YGgfU8t7_7hQZp7Sg2l/preview')">
   <div style="position:relative">
-    <iframe
-      class="ai-video-thumb"
+    <iframe 
+      class="ai-video-thumb" 
       src="https://drive.google.com/file/d/1HeH8DfI_dlff1YGgfU8t7_7hQZp7Sg2l/preview"
       style="height:200px;width:100%;border:none;display:block;pointer-events:none;"
       allowfullscreen>
@@ -414,50 +413,84 @@
 </div>
 
       <!-- TWO CHILDREN HUGGING -->
-      <div class="ai-card ai-card-video" data-tool="kling" onclick="openAIVideoModal('Two_children_hugging_and_dancing_together_with_joyful_movements.mp4')">
-        <div style="position:relative">
-          <video class="ai-video-thumb" src="Two_children_hugging_and_dancing_together_with_joyful_movements.mp4" muted preload="metadata" style="height:200px;width:100%;object-fit:cover;display:block;" onloadedmetadata="this.currentTime=1"></video>
-          <div class="ai-video-play"><div class="ai-video-play-btn">▶</div></div>
-        </div>
-        <div class="ai-info">
+<div class="ai-card ai-card-video" data-tool="kling" 
+   onclick="openAIVideoModal('https://drive.google.com/file/d/1konTNskELEZaqJDBjPlHDpC3Ikjj-BAD/preview')">
+   <div style="position:relative">
+	 <iframe
+       class="ai-video-thumb" 
+	   src="https://drive.google.com/file/d/1konTNskELEZaqJDBjPlHDpC3Ikjj-BAD/preview" 
+	   style="height:200px;width:100%;border:none;display:block;pointer-events:none;"
+       allowfullscreen>
+	 </iframe>
+     <div class="ai-video-play"><div class="ai-video-play-btn">▶</div></div>
+    </div>
+    <div class="ai-info">
           <div class="ai-title">Children Dancing Together</div>
-          <div class="ai-meta"><span class="ai-tag ai-type-video">Video</span><span class="ai-tag">Kling AI</span></div>
-        </div>
-      </div>
+          <div class="ai-meta">
+		  <span class="ai-tag ai-type-video">Video</span>
+		  <span class="ai-tag">Kling AI</span>
+    </div>
+  </div>
+</div>
 
       <!-- BABY CRAWLING AND DANCING -->
-      <div class="ai-card ai-card-video" data-tool="kling" onclick="openAIVideoModal('Baby_crawling_and_dancing_with_playful_movements.mp4')">
-        <div style="position:relative">
-          <video class="ai-video-thumb" src="Baby_crawling_and_dancing_with_playful_movements.mp4" muted preload="metadata" style="height:200px;width:100%;object-fit:cover;display:block;" onloadedmetadata="this.currentTime=1"></video>
-          <div class="ai-video-play"><div class="ai-video-play-btn">▶</div></div>
-        </div>
-        <div class="ai-info">
+<div class="ai-card ai-card-video" data-tool="kling" 
+   onclick="openAIVideoModal('https://drive.google.com/file/d/1Hpo5MKWBPFUoS7uKul0Ir2jOWL4y0zKP/preview')">
+   <div style="position:relative">
+      <iframe
+       class="ai-video-thumb" 
+	   src="https://drive.google.com/file/d/1Hpo5MKWBPFUoS7uKul0Ir2jOWL4y0zKP/preview" 
+	   style="height:200px;width:100%;border:none;display:block;pointer-events:none;" 
+	   allowfullscreen>
+	 </iframe>
+     <div class="ai-video-play"><div class="ai-video-play-btn">▶</div></div>
+     </div>
+     <div class="ai-info">
           <div class="ai-title">Baby Crawling & Dancing</div>
-          <div class="ai-meta"><span class="ai-tag ai-type-video">Video</span><span class="ai-tag">Kling AI</span></div>
-        </div>
-      </div>
+          <div class="ai-meta">
+		  <span class="ai-tag ai-type-video">Video</span>
+		  <span class="ai-tag">Kling AI</span>
+	 </div>
+   </div>
+</div>
 
-      <!-- AGING PROGRESSION ANIMATION -->
-      <div class="ai-card ai-card-video" data-tool="pixverse" onclick="openAIVideoModal('Animation_showing_smooth_transformation_and_aging_progression_from_child_to_adult__1_.mp4')">
-        <div style="position:relative">
-          <video class="ai-video-thumb" src="Animation_showing_smooth_transformation_and_aging_progression_from_child_to_adult__1_.mp4" muted preload="metadata" style="height:200px;width:100%;object-fit:cover;display:block;" onloadedmetadata="this.currentTime=1"></video>
-          <div class="ai-video-play"><div class="ai-video-play-btn">▶</div></div>
-        </div>
-        <div class="ai-info">
-          <div class="ai-title">Child to Adult Aging Animation</div>
-          <div class="ai-meta"><span class="ai-tag ai-type-video">Video</span><span class="ai-tag">PixVerse</span></div>
+      <!-- Young girl Dancing -->
+ <div class="ai-card ai-card-video" data-tool="pixverse" 
+     onclick="https://drive.google.com/file/d/1tKEdWo3co2rcCQXqncAc6IXCUTuRvc72/preview')">
+     <div style="position:relative">
+	  <iframe
+       class="ai-video-thumb" 
+	   src="https://drive.google.com/file/d/1tKEdWo3co2rcCQXqncAc6IXCUTuRvc72/preview"
+	   style="height:200px;width:100%;border:none;display:block;pointer-events:none;" 
+	   allowfullscreen>
+	  </iframe>
+     <div class="ai-video-play"><div class="ai-video-play-btn">▶</div></div>
+     </div>
+     <div class="ai-info">
+          <div class="ai-title">Young child Dancing</div>
+          <div class="ai-meta">
+		  <span class="ai-tag ai-type-video">Video</span>
+		  <span class="ai-tag">PixVerse</span>
+		  </div>
         </div>
       </div>
 
       <!-- BABY CRAWLING DOWN CHAIR -->
-      <div class="ai-card ai-card-video" data-tool="kling" onclick="openAIVideoModal('Baby_crawling_down_from_red_chair__natural_crawling_movement.mp4')">
+<div class="ai-card ai-card-video" data-tool="kling" 
+      onclick="openAIVideoModal('https://drive.google.com/file/d/1pmCCMRCC1BPJa82XEZpXKL0mi61hOi5O/preview')">
         <div style="position:relative">
-          <video class="ai-video-thumb" src="Baby_crawling_down_from_red_chair__natural_crawling_movement.mp4" muted preload="metadata" style="height:200px;width:100%;object-fit:cover;display:block;" onloadedmetadata="this.currentTime=1"></video>
-          <div class="ai-video-play"><div class="ai-video-play-btn">▶</div></div>
-        </div>
+		<iframe
+          class="ai-video-thumb" 
+		  src="https://drive.google.com/file/d/1pmCCMRCC1BPJa82XEZpXKL0mi61hOi5O/preview" 
+		  style="height:200px;width:100%;border:none;display:block;pointer-events:none;" 
+	     allowfullscreen>
+	    </iframe>
+       <div class="ai-video-play"><div class="ai-video-play-btn">▶</div></div>
+       </div>
         <div class="ai-info">
           <div class="ai-title">Baby Climbing Down Chair</div>
-          <div class="ai-meta"><span class="ai-tag ai-type-video">Video</span><span class="ai-tag">Kling AI</span></div>
+          <div class="ai-meta"><span class="ai-tag ai-type-video">Video</span>
+		  <span class="ai-tag">Kling AI</span></div>
         </div>
       </div>
 
@@ -576,9 +609,9 @@
 <div class="video-modal" id="videoModal" onclick="closeVideoModal(event)">
   <div class="video-modal-inner" onclick="event.stopPropagation()">
     <button class="video-modal-close" onclick="event.stopPropagation();closeVideoModal()">✕</button>
-    <video id="modalVideo" controls preload="none" style="width:100%;border-radius:14px;display:block;">
-      Your browser does not support the video tag.
-    </video>
+    <iframe id="modalVideo" src="" allow="autoplay" allowfullscreen
+      style="width:100%;height:500px;border:none;border-radius:14px;display:block;">
+    </iframe>
   </div>
 </div>
 
@@ -633,16 +666,11 @@ function closeLightbox(){document.getElementById('lightbox').classList.remove('o
 
 function openAIVideoModal(src){
   const modal=document.getElementById('videoModal');
-  const v=document.getElementById('modalVideo');
-  v.src=src;
-  v.load();
+  const iframe=document.getElementById('modalVideo');
+  iframe.src=src;
   modal.classList.add('open');
-  v.addEventListener('canplay', function handler(){
-    v.removeEventListener('canplay', handler);
-    v.play().catch(()=>{});
-  });
 }
-function openVideoModal(){openAIVideoModal('The_Apocalypse_Series.mp4');}
+function openVideoModal(){openAIVideoModal('https://drive.google.com/file/d/1HeH8DfI_dlff1YGgfU8t7_7hQZp7Sg2l/preview');}
 function closeVideoModal(e){
   if(e&&e.type==='click'){
     const modal=document.getElementById('videoModal');
@@ -650,8 +678,7 @@ function closeVideoModal(e){
     if(e.target!==modal && e.target!==closeBtn) return;
   }
   document.getElementById('videoModal').classList.remove('open');
-  const v=document.getElementById('modalVideo');
-  v.pause();v.currentTime=0;v.removeAttribute('src');v.load();
+  document.getElementById('modalVideo').src='';
 }
 
 function filterAI(tool,el){
